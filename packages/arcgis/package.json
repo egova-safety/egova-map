@@ -3,7 +3,7 @@
   "types": "dist/types/index.d.ts",
   "main": "dist/egova-map-arcgis.umd.js",
   "module": "dist/egova-map-arcgis.es5.js",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "publishConfig": {
     "access": "public"
   },
@@ -20,7 +20,7 @@
     "@turf/turf": "^5.1.6"
   },
   "devDependencies": {
-    "@egova/map-base": "^1.0.6",
+    "@egova/map-base": "^1.0.7",
     "@turf/turf": "^5.1.6",
     "rollup": "^1.6.0",
     "rollup-plugin-commonjs": "^9.2.1",
