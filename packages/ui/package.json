@@ -31,6 +31,10 @@
         "vue-class-component": "^7.0.1",
         "vue-property-decorator": "^7.3.0"
     },
+    "optionalDependencies": {
+        "@egova/map-arcgis": "^1.0.8",
+        "@egova/map-minemap": "^1.0.8"
+    },
     "devDependencies": {
         "@egova/flagwind-web": "^1.0.14",
         "@egova/map-arcgis": "^1.0.8",
