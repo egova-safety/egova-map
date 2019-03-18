@@ -1,0 +1,108 @@
+<div class="v-intro">
+    <h1>Track Layer</h1>
+    <p>一标准化地图操作的api,为了屏蔽不同地图sdk对业务的影响,方便非地图专业人员很方便实现地图相关业务,目前对ArcGIS和Minemap两种不同地图SDK进行实现。</p>
+
+    <h2>柱状图</h2>
+    <u-example title="尺寸">
+        <template slot="case">
+            <i-button @click="startTrack">播放</i-button>
+            <fm-map  vid="esri_map">
+                <fm-track-layer :symbol="carSymbol" @getImageUrl="getImageUrl" @getImageAngle="getImageAngle" @on-build="onTrackBuild">
+                    <fm-point-layer vid="tollgateLayer" :source="dataList" :enableCluster="false" :enableEdit="true"
+                        :showInfoWindow="true" :symbol="pointSymbol" @changeStandardModel="onChangeStandardModel">
+                    </fm-point-layer>
+                </fm-track-layer>
+            </fm-map>
+        </template>
+        <template slot="desc">
+            <p>TrackLayer组件必须在Map组件之下，PointLayer组件之上。</p>
+        </template>
+        <u-code slot="code" lang="html">{{code.track}}</u-code>
+    </u-example>
+
+    <div class="api">
+        <h2>API</h2>
+        <h3>属性</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>名称</th>
+                    <th>说明</th>
+                    <th>数据类型</th>
+                    <th>属性类型</th>
+                    <th>默认值</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>options</td>
+                    <td>图层参数</td>
+                    <td>any</td>
+                    <td>静态属性</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>solveMode</td>
+                    <td>路径求解方式</td>
+                    <td>string</td>
+                    <td>静态属性</td>
+                    <td>Line(只能为Line或Segment)</td>
+                </tr>
+
+                <tr>
+                    <td>speed</td>
+                    <td>速度</td>
+                    <td>number</td>
+                    <td>静态属性</td>
+                    <td>100</td>
+                </tr>
+            </tbody>
+
+        </table>
+
+        <h3>事件</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>事件名</th>
+                    <th>说明</th>
+                    <th>参数</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>on-build</td>
+                    <td>组件构建完成回调。</td>
+                    <td>(box:FlagwindTrackLayer)</td>
+                </tr>
+                <tr>
+                    <td>getImageUrl</td>
+                    <td>给移动目标设置图片</td>
+                    <td>(trackline: TrackLine, angle: number):string</td>
+                </tr>
+                <tr>
+                    <td>getImageAngle</td>
+                    <td>给移动目标设置偏转角度</td>
+                    <td>(trackline: TrackLine, angle: number):number</td>
+                </tr>
+
+                <tr>
+                    <td>onStationChanged</td>
+                    <td>移动目标达站回调</td>
+                    <td>(index: number, model: any)</td>
+                </tr>
+                <tr>
+                    <td>onMoveEvent</td>
+                    <td>移动目标位置移动回调</td>
+                    <td>(lineName: string, segmentIndex: number, xy: Array, angle: number)</td>
+                </tr>
+                <tr>
+                    <td>onLineEndEvent</td>
+                    <td>移动目标线路终点回调</td>
+                    <td>(lineName: string, segmentIndex: number, trackLine: TrackLine)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

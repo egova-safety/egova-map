@@ -1,0 +1,121 @@
+/*-----------------common---------------*/
+* {
+    scrollbar-arrow-color: #0b7bb5;
+    scrollbar-face-color: #0b7bb5;
+    scrollbar-3dlight-color: #000000;
+    scrollbar-highlight-color: #255780;
+    scrollbar-shadow-color: #255780;
+    scrollbar-darkshadow-color: #0b7bb5;
+    scrollbar-track-color: #255780;
+    scrollbar-base-color: #255780;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #0b7bb5;
+    height: 50px;
+    outline-offset: -2px;
+    outline: 2px solid #255780;
+    border-radius: 4px;
+    border: 2px solid #255780;
+}
+/*---鼠标点击滚动条显示样式--*/
+::-webkit-scrollbar-thumb:hover {
+    background-color: #ff5050;
+    height: 50px;
+    border-radius: 4px;
+}
+/*---滚动条大小--*/
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+/*---滚动框背景样式--*/
+::-webkit-scrollbar-track-piece {
+    background-color: #255780;
+    border-radius: 0;
+}
+::-moz-placeholder {
+    color: #39acef;
+}
+::-webkit-input-placeholder {
+    color: #39acef;
+}
+:-ms-input-placeholder {
+    color: #39acef;
+}
+::-ms-clear {
+    display: none;
+}
+
+.light-box {
+    border: 1px solid @base-color;
+
+    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
+    -webkit-animation-direction: normal;
+    -webkit-animation-duration: 20s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-name: colors;
+    -webkit-animation-timing-function: ease;
+
+    @keyframes colors {
+        0% {
+            box-shadow: 0 0 8px 3px #39f;
+        }
+        15% {
+            box-shadow: 0 0 8px 3px #f246c9;
+        }
+        30% {
+            box-shadow: 0 0 8px 3px #4453f2;
+        }
+        45% {
+            box-shadow: 0 0 8px 3px #44f262;
+        }
+        60% {
+            box-shadow: 0 0 8px 3px #f257d4;
+        }
+        75% {
+            box-shadow: 0 0 8px 3px #edf255;
+        }
+        90% {
+            box-shadow: 0 0 8px 3px #f20006;
+        }
+        100% {
+            box-shadow: 0 0 8px 3px #39f;
+        }
+    }
+    @keyframes flowLine {
+        0%,
+        100% {
+            left: 0;
+            top: 0;
+            transform: rotate(0);
+        }
+        24% {
+            transform: rotate(0);
+        }
+        25% {
+            left: 100%;
+            top: 0;
+            transform: rotate(90deg);
+        }
+        49% {
+            transform: rotate(90deg);
+        }
+        50% {
+            left: 100%;
+            top: 100%;
+            transform: rotate(180deg);
+        }
+        74% {
+            transform: rotate(180deg);
+        }
+        75% {
+            left: 0;
+            top: 100%;
+            transform: rotate(270deg);
+        }
+        99% {
+            transform: rotate(270deg);
+        }
+    }
+}

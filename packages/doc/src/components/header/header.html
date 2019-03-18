@@ -1,0 +1,7 @@
+<header class="layout-header">
+    <i-menu mode="horizontal" theme="primary" :active-name="activePath" @on-select="onMenuItemSelect">
+        <i-menu-item v-for="(item) in menus" :name="item.path" :key="item.path" v-if="!item.visible">
+            <i-icon :type="item.icon" v-if="item.icon"></i-icon> {{item.title}}
+        </i-menu-item>
+    </i-menu>
+</header>

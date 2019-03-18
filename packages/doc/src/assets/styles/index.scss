@@ -1,0 +1,8 @@
+@charset 'UTF-8';
+
+@import "./common/function";
+@import "./common/mixin";
+@import "./views/error";
+
+// 第三方css
+@import "~iview/dist/styles/iview.css";

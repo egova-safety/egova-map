@@ -1,0 +1,22 @@
+<section ref="infoWindow" :class="{'active':(visible && !zooming)}" class="fm-widgets fm-info-window">
+    <div class="close" @click="onClose"></div>
+
+    <article>
+
+        <aside class="title">
+            <span v-if="hasTitle">{{title}}</span>
+            <slot name="title"></slot>
+        </aside>
+        <aside class="content" @click="triggerEvent($event)">
+            <div v-html="content"></div>
+            <slot name="content"></slot>
+        </aside>
+        <aside class="footer" @click="triggerEvent($event)">
+            <slot name="footer"></slot>
+        </aside>
+
+    </article>
+
+    <article class="point-wave" ref="pointWave" v-show="showWave"></article>
+
+</section>

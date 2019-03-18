@@ -1,0 +1,11 @@
+{
+    "name": "@egova/root",
+    "version": "1.0.41",
+    "scripts": {
+        "build": "lerna run build",
+        "dist": "lerna run dist"
+    },
+    "devDependencies": {
+
+    }
+}

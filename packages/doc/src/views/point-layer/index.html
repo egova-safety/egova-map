@@ -1,0 +1,164 @@
+<div class="v-intro">
+    <h1>Point Layer</h1>
+    <h2>一、概述</h2>
+    <p>该组件为点要素图层组件，对应 flagwind map 中的 FlagwindPointLayer类。我们可配置相关参数来实现不同点要素图层展示。该组件依附于Map组件，且不能脱离Map组件独立使用。</p>
+    <h2>二、示例</h2>
+    <u-example title="说明">
+        <template slot="case">
+            <fm-map ref="fwAmap" vid="esri_map" >
+                <fm-point-layer vid="tollgateLayer" :enableCluster="false" :symbol="symbol" :source="dataList"
+                    @changeStandardModel="onChangeStandardModel">
+                </fm-point-layer>
+            </fm-map>
+        </template>
+        <template slot="desc">
+            <p>首先需要定义map组件，用于构建地图对象。然后再定义point layer组件，显示点要素。</p>
+            <p>不同类型的点要素可以定义多个点图层，通过绑定不同属性来显示不同的点要素</p>
+        </template>
+        <u-code slot="code" lang="html">{{code.point}}</u-code>
+    </u-example>
+    <div class="api">
+        <h2>API</h2>
+        <h3>属性</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>名称</th>
+                    <th>说明</th>
+                    <th>数据类型</th>
+                    <th>属性类型</th>
+                    <th>默认值</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>vid</td>
+                    <td>对象唯一标识</td>
+                    <td>string</td>
+                    <td>静态属性</td>
+                    <td>必填</td>
+                </tr>
+                <tr>
+                    <td>options</td>
+                    <td>地层参数</td>
+                    <td>any</td>
+                    <td>静态属性</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>enableEdit</td>
+                    <td>启用坐标修改功能</td>
+                    <td>boolean</td>
+                    <td>动态属性</td>
+                    <td>false</td>
+                </tr>
+                <tr>
+                    <td>enableCluster</td>
+                    <td>启用要素聚合功能</td>
+                    <td>boolean</td>
+                    <td>静态属性</td>
+                    <td>false</td>
+                </tr>
+
+                <tr>
+                    <td>symbol</td>
+                    <td>要素样式</td>
+                    <td>any</td>
+                    <td>静态属性</td>
+                    <td>必填</td>
+                </tr>
+                <tr>
+                    <td>requestData</td>
+                    <td>是否异步请求数据，为true时，必须设置getDataList事件。</td>
+                    <td>boolean</td>
+                    <td>静态属性</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>requestStatus</td>
+                    <td>是否异步请求状态，为true时，必须设置getStatusList事件。</td>
+                    <td>boolean</td>
+                    <td>静态属性</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>showInfoWindow</td>
+                    <td>要素单击时，是否显示信息窗口</td>
+                    <td>boolean</td>
+                    <td>动态属性</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>showTooltip</td>
+                    <td>要素悬停时，是否显示tooltip信息。</td>
+                    <td>boolean</td>
+                    <td>静态属性</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>selectMode</td>
+                    <td>是否启用地图要素选择功能</td>
+                    <td>number</td>
+                    <td>静态属性</td>
+                    <td>0（0为未启用 1为单选，2为多选）</td>
+                </tr>
+            </tbody>
+
+        </table>
+
+        <h3>事件</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>事件名</th>
+                    <th>说明</th>
+                    <th>参数</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>on-build</td>
+                    <td>组件构建完成回调。</td>
+                    <td>(layer:FlagwindBusinessLayer)</td>
+                </tr>
+                <tr>
+                    <td>onLayerClick</td>
+                    <td>图层要素单击事件。</td>
+                    <td>(evt:any)</td>
+                </tr>
+                <tr>
+                    <td>onCheckChanged</td>
+                    <td>图层要素单击选择回调事件。</td>
+                    <td>(evt: { target: Array; check: boolean; selectedItems: Array })</td>
+                </tr>
+                <tr>
+                    <td>onPositionChanged</td>
+                    <td>要素坐标变更回调事件。</td>
+                    <td>(currentPoint: any, originPoint: any, item: any)</td>
+                </tr>
+                <tr>
+                    <td>onVisibleChanged</td>
+                    <td>图层可见性变换回调事件。</td>
+                    <td>(isShow: boolean)</td>
+                </tr>
+                <tr>
+                    <td>getImageUrl</td>
+                    <td>自定义要素图标，它的优先级高于symbol，默认为null。</td>
+                    <td>(model: any)</td>
+                </tr>
+                <tr>
+                    <td>changeStandardModel</td>
+                    <td>标准化实体转换方法。</td>
+                    <td>(model: any)</td>
+                </tr>
+                <tr>
+                    <td>getInfoWindowContext</td>
+                    <td>信息弹窗方法。返回结果如：{title: "详细信息", content: "没有定制详细信息"}
+                    </td>
+                    <td>(mode: any)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

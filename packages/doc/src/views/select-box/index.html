@@ -1,0 +1,93 @@
+<div class="v-intro">
+    <h1>Select Box</h1>
+    <h2>一、概述</h2>
+    <p>Select Box 为多选择工具组件，它支持一个或多个不同类型图层的多选操作。</p>
+
+    <h2>二、示例</h2>
+    <u-example title="描述">
+        <template slot="case">
+            <fm-map  vid="esri_map">
+                <fm-select-box @onCheckChanged="onCheckChanged">
+                    <fm-point-layer vid="tollgateLayer" :enableCluster="false" :showInfoWindow="true" :symbol="symbol"
+                        :source="dataList" @changeStandardModel="onChangeStandardModel">
+                    </fm-point-layer>
+                </fm-select-box>
+            </fm-map>
+        </template>
+        <template slot="desc">
+            <p>SelectBox组件必须在Map组件之下，PointLayer组件之上，PointLayer可以放置多个</p>
+            <p>点击右上角的选择工具，然后在地图上画出对应的几几何图形，即可完成几何图形中要素的选择功能</p>
+        </template>
+        <u-code slot="code" lang="html">{{code.selectBox}}</u-code>
+    </u-example>
+    <div class="api">
+        <h2>API</h2>
+        <h3>属性</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>名称</th>
+                    <th>说明</th>
+                    <th>数据类型</th>
+                    <th>属性类型</th>
+                    <th>默认值</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>options</td>
+                    <td>构建参数</td>
+                    <td>any</td>
+                    <td>静态属性</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>selectMode</td>
+                    <td>选择模式</td>
+                    <td>SelectMode</td>
+                    <td>静态属性</td>
+                    <td>multiple</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+        <h3>事件</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>事件名</th>
+                    <th>说明</th>
+                    <th>参数</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>on-build</td>
+                    <td>组件构建完成回调。</td>
+                    <td>(box:IFlagwindSelectBox)</td>
+                </tr>
+                <tr>
+                    <td>onDrawStart</td>
+                    <td>绘制开始</td>
+                    <td>()</td>
+
+                </tr>
+                <tr>
+                    <td>onDrawEnd</td>
+                    <td>绘制结束</td>
+                    <td>()</td>
+
+                </tr>
+                <tr>
+                    <td>onCheckChanged</td>
+                    <td>check状态改变回调</td>
+                    <td>(checkItems: Array,layer: FlagwindBusinessLayer)</td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

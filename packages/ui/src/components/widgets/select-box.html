@@ -1,0 +1,14 @@
+<div>
+    <div class="fm-widgets fm-select-box">
+        <div class="fm-btn fm-btn-primary circle" @click="active('circle')">
+            <span>画圆形</span>
+        </div>
+        <div class="fm-btn fm-btn-primary rectangle" @click="active('rectangle')">
+            <span>画矩形</span>
+        </div>
+        <div class="fm-btn fm-btn-primary polygon" @click="active('polygon')">
+            <span>画多边形</span>
+        </div>
+    </div>
+    <slot></slot>
+</div>

@@ -1,0 +1,12 @@
+{
+  "packages": [
+    "packages/*"
+  ],
+  "publishConfig": {
+    "ignore": [
+      "ignored-file",
+      "*.md"
+    ]
+  },
+  "version": "1.0.5"
+}

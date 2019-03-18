@@ -1,0 +1,28 @@
+.fm-select-box{
+    display: none;
+}
+.fm-widgets.fm-select-box{
+    position: absolute;
+    z-index: 40;
+    float: right;
+    top:50px;
+    right: 50px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content:flex-end;
+    background-color:whitesmoke;
+    border-color: #2db7f5;
+    border: 1px solid #2db7f5;
+    border-radius: 6px;
+    display: flex;
+    padding: 8px;
+    .fm-btn {
+        padding-left: 10px;
+        padding-right: 10px;
+        min-width: inherit;
+        margin-right: 4px;
+    }
+    :last-child{
+        margin-right: 0px;
+    }
+}

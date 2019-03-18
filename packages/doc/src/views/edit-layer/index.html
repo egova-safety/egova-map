@@ -1,0 +1,77 @@
+<div class="v-intro">
+    <h1>Edit Layer</h1>
+    <h2>一、概述</h2>
+    <p>EditLayer组件对应flagwind map中的FlagwindEditLayer类，用于对点要素图层坐标修改；使用时必须给它指定一个PointLayer组件用为他的子组件。</p>
+
+    <h2>二、示例</h2>
+    <u-example title="说明">
+        <template slot="case">
+            <fm-map vid="esri_map" >
+                <fm-edit-layer @onEditInfo="onEditInfo">
+                    <fm-point-layer vid="tollgateLayer" :enableCluster="false" :enableEdit="true" :showInfoWindow="true"
+                        :symbol="symbol" :source="dataList" @changeStandardModel="onChangeStandardModel">
+                    </fm-point-layer>
+                </fm-edit-layer>
+            </fm-map>
+        </template>
+        <template slot="desc">
+            <p>Edit Layer组件必须在Map组件之下，Point Layer组件之上。</p>
+            <p>点击要修改的要素点，在弹出的信息窗口点击“更改修改”，然后把要素拖放至相应的位置上，点击“完成”按钮，完成坐标更改。</p>
+        </template>
+        <u-code slot="code" lang="html">{{code.edit}}</u-code>
+    </u-example>
+    <div class="api">
+        <h2>API</h2>
+        <h3>属性</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>名称</th>
+                    <th>说明</th>
+                    <th>数据类型</th>
+                    <th>属性类型</th>
+                    <th>默认值</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>options</td>
+                    <td>图层参数</td>
+                    <td>any</td>
+                    <td>静态属性</td>
+                    <td></td>
+                </tr>
+            </tbody>
+
+        </table>
+
+        <h3>事件</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>事件名</th>
+                    <th>说明</th>
+                    <th>参数</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>on-build</td>
+                    <td>组件构建完成回调。</td>
+                    <td>(layer:IFlagwindEditLayer)</td>
+                </tr>
+                <tr>
+                    <td>confirm</td>
+                    <td>编辑坐标提示确认方法定义</td>
+                    <td>(context: { title: string; content: any; onOk: () => void; onCancel: () => void })</td>
+                </tr>
+                <tr>
+                    <td>onEditInfo</td>
+                    <td>坐标更新回调</td>
+                    <td>(model: { id: string; latitude: number; longitude: number }, isSave: boolean): Promise</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

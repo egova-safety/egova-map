@@ -1,0 +1,99 @@
+<div class="v-intro">
+    <h1>Overlay</h1>
+    <h2>一、概述</h2>
+    <p>用于在地图某一位置显示一个遮罩物，常用于地图上显示图表等场景。</p>
+
+    <h2>二、示例</h2>
+    <u-example>
+
+        <template slot="case">
+            <fm-map  vid="esri_map">
+                <fm-point-layer vid="tollgateLayer" :enableCluster="false" :showInfoWindow="true" :symbol="pointSymbol"
+                    :source="dataList" @changeStandardModel="onChangeStandardModel">
+                </fm-point-layer>
+                <fm-overlay :point="point">
+                    这是一个遮罩物<br />
+                    你可以在这里放你自己的组件，显示在地图上{{point.data.name}}
+                </fm-overlay>
+            </fm-map>
+        </template>
+
+        <template slot="desc">
+        </template>
+        <u-code slot="code" lang="html">{{code.overlay}}</u-code>
+    </u-example>
+
+    <div class="api">
+        <h2>API</h2>
+        <h3>属性</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>名称</th>
+                    <th>说明</th>
+                    <th>数据类型</th>
+                    <th>属性类型</th>
+                    <th>默认值</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td>point</td>
+                    <td>位置信息</td>
+                    <td>any</td>
+                    <td>静态属性</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>width</td>
+                    <td>宽度</td>
+                    <td>number</td>
+                    <td>静态属性</td>
+                    <td>100px</td>
+                </tr>
+                <tr>
+                    <td>height</td>
+                    <td>调试</td>
+                    <td>number</td>
+                    <td>静态属性</td>
+                    <td>100px</td>
+                </tr>
+                <tr>
+                    <td>offsetX</td>
+                    <td>横向偏移量</td>
+                    <td>number</td>
+                    <td>静态属性</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>offsetX</td>
+                    <td>横向偏移量</td>
+                    <td>number</td>
+                    <td>静态属性</td>
+                    <td></td>
+                </tr>
+            </tbody>
+
+        </table>
+
+        <h3>事件</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>事件名</th>
+                    <th>说明</th>
+                    <th>参数</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>click</td>
+                    <td>窗口单击时回调事件</td>
+                    <td>(evt:HTMLElement)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
