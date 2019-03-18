@@ -170,9 +170,15 @@ export default abstract class Component extends Vue {
         return Activator.createInstance<T>(serviceType, ...params);
     }
 
-    protected getMapClassType(name: string,mapType: string = this.getMapType()) {
+    protected getMapClassType(name: string, mapType: string = this.getMapType()) {
         let arcgisSDK = require("@egova/map-arcgis");
         let minemapSDK = require("@egova/map-minemap");
+        if (arcgisSDK.default) {
+            arcgisSDK = arcgisSDK.default;
+        }
+        if (minemapSDK.default) {
+            minemapSDK = minemapSDK.default;
+        }
         if (mapType === "arcgis") {
             return (<any>arcgisSDK)[name];
         } else if (mapType === "minemap") {
