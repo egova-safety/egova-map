@@ -3,7 +3,7 @@
   "types": "dist/types/index.d.ts",
   "main": "dist/egova-map-minemap.umd.js",
   "module": "dist/egova-map-minemap.es5.js",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "publishConfig": {
     "access": "public"
   },
