@@ -1,6 +1,6 @@
 {
     "name": "@egova/map-doc",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "private": true,
     "scripts": {
         "dev": "webpack-dev-server --content-base test/ --open --inline --compress --history-api-fallback --port 8010 --config build/webpack.dev.config.js",
@@ -11,10 +11,10 @@
     "dependencies": {
         "@egova/flagwind-echarts": "^1.0.1",
         "@egova/flagwind-web": "^1.0.14",
-        "@egova/map-arcgis": "^1.0.5",
-        "@egova/map-base": "^1.0.5",
-        "@egova/map-minemap": "^1.0.5",
-        "@egova/map-ui": "^1.0.5",
+        "@egova/map-arcgis": "^1.0.6",
+        "@egova/map-base": "^1.0.6",
+        "@egova/map-minemap": "^1.0.6",
+        "@egova/map-ui": "^1.0.6",
         "axios": "^0.18.0",
         "clipboard": "^2.0.4",
         "esri-loader": "^2.4.0",
