@@ -1,5 +1,8 @@
 import base from "@egova/map-base";
 
+/**
+ * 处理编辑要素图层
+ */
 export class EditLayer extends base.FeatureLayer
     implements base.IEditLayer {
     private graphic: any = null;

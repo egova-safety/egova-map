@@ -1,5 +1,4 @@
 import base from "@egova/map-base";
-import { MapUtils } from "./map.utils";
 import { IGraphicsLayer } from "./graphics.layer";
 
 /**
@@ -167,7 +166,7 @@ export class Circle extends Geometry {
         let from = new Point(this.center[0], this.center[1], new MapSpatial(0));
         let to = new Point(point[0], point[1], new MapSpatial(0));
         const units = "meters";
-        let distance = MapUtils.getLength(from, to, units);
+        let distance = base.MapUtils.getLength(from, to, units);
         return distance <= this.radius;
 
         // let offsetX = point[0] - this.center[0];

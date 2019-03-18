@@ -8,8 +8,7 @@ import { EventProvider } from "../events";
  * @export
  * @class FeatureLayer
  */
-export abstract class FeatureLayer extends EventProvider
-    implements ISingleLayer {
+export abstract class FeatureLayer extends EventProvider implements ISingleLayer {
     protected layer: any;
     public isShow: boolean = true;
 
@@ -18,14 +17,23 @@ export abstract class FeatureLayer extends EventProvider
         this.id = id;
     }
 
+    /**
+     * 要素集
+     */
     public get graphics(): Array<Graphic> {
         return this.layer.graphics;
     }
 
+    /**
+     * 要素对应的绑定项集
+     */
     public get items(): Array<any> {
         return this.graphics.map(g => g.attributes);
     }
 
+    /**
+     * 要素数量
+     */
     public get count(): number {
         if (this.layer) {
             return this.graphics.length;
@@ -33,23 +41,40 @@ export abstract class FeatureLayer extends EventProvider
         return 0;
     }
 
+    /**
+     * 添加至地图对象中
+     * @param map 
+     */
     public appendTo(map: any) {
         this.layer.addToMap(map);
     }
 
+    /**
+     * 从地图中移除
+     * @param map 
+     */
     public removeLayer(map: any) {
         this.layer.removeFromMap(map);
     }
 
+    /**
+     * 清除
+     */
     public clear(): void {
         this.layer.clear();
     }
 
+    /**
+     * 显示
+     */
     public show(): void {
         this.isShow = true;
         this.layer.show();
     }
 
+    /**
+     * 隐藏
+     */
     public hide(): void {
         this.isShow = false;
         this.layer.hide();

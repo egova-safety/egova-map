@@ -1,6 +1,10 @@
 import base from "@egova/map-base";
-import { MapUtils } from "./map.utils";
-import { Polyline, MapSpatial, PolylineGraphic, PointGraphic } from "./map.model";
+import {
+    Polyline,
+    MapSpatial,
+    PolylineGraphic,
+    PointGraphic
+} from "./map.model";
 import { GroupLayer } from "./group.layer";
 import { RouteResult } from "./route.result";
 
@@ -22,19 +26,19 @@ export class RouteLayer extends base.RouteLayer {
 
     public onSetSegmentByPoint(options: any, segment: base.TrackSegment) {
         let points = options.points;
-        let length = options.length || MapUtils.distance(points);
+        let length = options.length || base.MapUtils.distance(points);
         let numsOfKilometer = segment.options.numsOfKilometer;
         const polyline = new Polyline(new MapSpatial(0));
         const line: Array<any> = [];
         for (let i = 0; i < points.length - 1; i++) {
             const start = points[i],
                 end = points[i + 1];
-            const tmppoints = MapUtils.density(
+            const tmppoints = base.MapUtils.density(
                 start,
                 end,
                 length * numsOfKilometer
             );
-            tmppoints.forEach(g => {
+            tmppoints.forEach((g: { x: any; y: any }) => {
                 line.push([g.x, g.y]);
             });
         }
@@ -120,7 +124,7 @@ export class RouteLayer extends base.RouteLayer {
             segment.startGraphic.geometry.y;
         let endXY =
             segment.endGraphic.geometry.x + "," + segment.endGraphic.geometry.y;
-        let wayXY!: string ;
+        let wayXY!: string;
         if (waypoints) {
             wayXY = waypoints
                 .map(g => `${g.geometry.x},${g.geometry.y}`)
@@ -174,7 +178,11 @@ export class RouteLayer extends base.RouteLayer {
         segment.setMultPoints(points);
     }
 
-    public onCreateMoveMark(trackline: base.TrackLine, graphic: any, angle: number) {
+    public onCreateMoveMark(
+        trackline: base.TrackLine,
+        graphic: any,
+        angle: number
+    ) {
         let markerUrl = this.getImageUrl(trackline, angle);
         let symbol = PointGraphic.getStandardSymbol(this.options);
 

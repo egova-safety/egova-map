@@ -1,33 +1,95 @@
+import turfDistance from "@turf/distance";
+
 export class MapUtils {
     public static PI = 3.14159265358979324;
     public static X_PI = (3.14159265358979324 * 3000.0) / 180.0;
 
-    // /**
-    //  * 增密
-    //  * @param start 始点
-    //  * @param end 终点
-    //  * @param n 增加的点数
-    //  */
-    // public static density(start: MinemapPoint, end: MinemapPoint, n: number) {
-    //     const resList = [];
-    //     if (n === 0) {
-    //         resList.push(start);
-    //         resList.push(end);
-    //         return resList;
-    //     }
-    //     const xDiff = (end.x - start.x) / n;
-    //     const yDiff = (end.y - start.y) / n;
-    //     for (let j = 0; j < n; j++) {
-    //         resList.push(new MinemapPoint(start.x + j * xDiff, start.y + j * yDiff));
-    //     }
-    //     resList.push({ x: end.x, y: end.y });
-    //     return resList;
-    // }
+    /**
+     * 求两点之间的距离
+     * @param from 起点
+     * @param to 终点
+     */
+    public static getLength(
+        from: { x: number; y: number },
+        to: { x: number; y: number },
+        units:
+            | "miles"
+            | "nauticalmiles"
+            | "degrees"
+            | "radians"
+            | "inches"
+            | "yards"
+            | "meters"
+            | "metres"
+            | "kilometers"
+            | "kilometres" = "kilometers"
+    ): number {
+        let distance1 = turfDistance([from.x, from.y], [to.x, to.y], {
+            units: units
+        });
+        return distance1;
+    }
 
-    // public static getLength(tmppolyline: any, units: any) {
-    //     let length = esri.geometry.geodesicLengths([tmppolyline], units)[0];
-    //     return MapSetting.units * length;
-    // }
+    /**
+     * 增密
+     * @param start 始点
+     * @param end 终点
+     * @param n 增加的点数
+     */
+    public static density(
+        start: { x: number; y: number },
+        end: { x: number; y: number },
+        n: number
+    ) {
+        const resList = [];
+        if (n === 0) {
+            resList.push(start);
+            resList.push(end);
+            return resList;
+        }
+        const xDiff = (end.x - start.x) / n;
+        const yDiff = (end.y - start.y) / n;
+        for (let j = 0; j < n; j++) {
+            resList.push({
+                x: start.x + j * xDiff,
+                y: start.y + j * yDiff
+            });
+        }
+        resList.push({ x: end.x, y: end.y });
+        return resList;
+    }
+
+    /**
+     * 求多点之间连线的距离
+     * @param points 多点集
+     * @param count 抽点次数
+     */
+    public static distance(
+        points: Array<{ x: number; y: number }>,
+        count: number | null = 100
+    ) {
+        if (count == null) {
+            count = points.length;
+        }
+        let interval = 1;
+        if (points.length > count) {
+            interval = Math.max(Math.floor(points.length / count), 1);
+        }
+        let length = 0,
+            i = 0;
+        for (i = 0; i <= points.length - interval; i = i + interval) {
+            let start = points[i];
+            let end = points[i + interval];
+            if (start && end) {
+                length += MapUtils.getLength(start, end);
+            }
+        }
+        if (i < points.length - 1) {
+            length += MapUtils.getLength(points[i], points[points.length - 1]);
+        }
+
+        return length;
+    }
 
     /**
      * 把一个直线，切成多个点
@@ -387,27 +449,27 @@ export class MapUtils {
     /**
      * 求解两点距离
      */
-    public static distance(
-        latA: number,
-        lonA: number,
-        latB: number,
-        lonB: number
-    ) {
-        let earthR = 6371000;
-        let x =
-            Math.cos((latA * MapUtils.PI) / 180) *
-            Math.cos((latB * MapUtils.PI) / 180) *
-            Math.cos(((lonA - lonB) * MapUtils.PI) / 180);
-        let y =
-            Math.sin((latA * MapUtils.PI) / 180) *
-            Math.sin((latB * MapUtils.PI) / 180);
-        let s = x + y;
-        if (s > 1) s = 1;
-        if (s < -1) s = -1;
-        let alpha = Math.acos(s);
-        let distance = alpha * earthR;
-        return distance;
-    }
+    //    public static distance(
+    //        latA: number,
+    //        lonA: number,
+    //        latB: number,
+    //        lonB: number
+    //    ) {
+    //        let earthR = 6371000;
+    //        let x =
+    //            Math.cos((latA * MapUtils.PI) / 180) *
+    //            Math.cos((latB * MapUtils.PI) / 180) *
+    //            Math.cos(((lonA - lonB) * MapUtils.PI) / 180);
+    //        let y =
+    //            Math.sin((latA * MapUtils.PI) / 180) *
+    //            Math.sin((latB * MapUtils.PI) / 180);
+    //        let s = x + y;
+    //        if (s > 1) s = 1;
+    //        if (s < -1) s = -1;
+    //        let alpha = Math.acos(s);
+    //        let distance = alpha * earthR;
+    //        return distance;
+    //    }
     public static outOfChina(lat: number, lon: number) {
         if (lon < 72.004 || lon > 137.8347) {
             return true;
