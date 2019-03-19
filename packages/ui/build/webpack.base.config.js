@@ -20,12 +20,7 @@ module.exports = {
         umdNamedDefine: true
     },
     externals: {
-        "vue": {
-            root: 'Vue',
-            commonjs: 'vue',
-            commonjs2: 'vue',
-            amd: 'vue'
-        },
+        "vue":"vue",
         "esri-loader": "esri-loader",
         "@egova/map-base": "@egova/map-base",
         "@egova/map-arcgis": "@egova/map-arcgis",
@@ -34,7 +29,7 @@ module.exports = {
     resolve: {
         extensions: [".js", ".vue", ".json", ".ts"],
         alias: {
-            "vue$": "vue/dist/vue.esm.js",
+            "vue": "vue/dist/vue.esm.js",
             "@": resolve("src")
         }
     },

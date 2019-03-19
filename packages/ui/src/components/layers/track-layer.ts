@@ -1,7 +1,7 @@
 
 import { component, config } from "../decorator";
 import base from "@egova/map-base";
-import Component from "@/components/component";
+import ComponentBase from "@/components/component";
 
 /**
  * 事件定义。
@@ -18,7 +18,7 @@ const EXCULDE_NAMES = ["map","options"];
  * @version 1.0.0
  */
 @component({ template: require("./track-layer.html") })
-export default class TrackLayerComponent extends Component {
+export default class TrackLayerComponent extends ComponentBase {
 
     @config({ type: Object })
     public options: any;
@@ -102,7 +102,7 @@ export default class TrackLayerComponent extends Component {
         this.$children.forEach(child => {
             child.$emit("map-ready", this.map);
         });
-        let layer = (<Component>this.$children[0]).mapComponent;
+        let layer = (<ComponentBase>this.$children[0]).mapComponent;
         this._mapComponent = this.getService<base.TrackLayer>(
             serviceType,
             layer,

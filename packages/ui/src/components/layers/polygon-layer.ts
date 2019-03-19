@@ -1,7 +1,7 @@
 
 import { component, config } from "../decorator";
 import base from "@egova/map-base";
-import Component from "@/components/component";
+import ComponentBase from "@/components/component";
 
 /**
  * 事件定义。
@@ -28,7 +28,7 @@ const EXCULDE_NAMES = ["requestData", "requestStatus", "vid", "source","options"
  * @version 1.0.0
  */
 @component({ template: require("./polygon-layer.html") })
-export default class PolygonLayerComponent extends Component {
+export default class PolygonLayerComponent extends ComponentBase {
     /**
      * 获取或设置图层ID。
      * @description 静态属性，仅支持初始化配置。

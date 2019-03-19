@@ -3,9 +3,21 @@
     "version": "1.0.41",
     "scripts": {
         "build": "lerna run build",
-        "dist": "lerna run dist"
+        "dist": "lerna run dist",
+        "doc:build": "vue-cli-service build",
+        "doc:lint": "vue-cli-service lint",
+        "doc:serve": "vue-cli-service serve"
+    },
+    "dependencies": {
     },
     "devDependencies": {
-
+    },
+    "bugs": {
+        "url": "https://github.com/chendb/egova-map/issues"
+    },
+    "homepage": "https://github.com/chendb/egova-map#readme",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/chendb/egova-map"
     }
 }

@@ -1,0 +1,10 @@
+{
+    "files": [],
+    "references": [
+        { "path": "base" },
+        { "path": "arcgis" },
+        { "path": "minemap" },
+        { "path": "ui" },
+        { "path": "doc" }
+    ]
+}

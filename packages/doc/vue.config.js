@@ -4,7 +4,7 @@ const CompressionPlugin = require('compression-webpack-plugin'); //Gzip
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin; //Webpack包文件分析器
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-
+console.log(require('os').cpus().length);
 module.exports = {
     //基本路径
     publicPath: './',
@@ -15,7 +15,15 @@ module.exports = {
     //放置生成的静态资源 (js、css、img、fonts) 的 (相对于 outputDir 的) 目录。
     assetsDir: 'static',
     //以多页模式构建应用程序。
-    pages: undefined,
+    // pages:undefined,
+    // pages: {
+    //     index: {
+    //         entry: 'src/main.ts',
+    //         template: 'public/index.html',
+    //         filename: 'index.html',
+    //         // chunks: ['chunk-vendors', 'chunk-common', 'index']
+    //     }
+    // },
     //是否使用包含运行时编译器的 Vue 构建版本
     runtimeCompiler: true,
     //是否为 Babel 或 TypeScript 使用 thread-loader。该选项在系统的 CPU 有多于一个内核时自动启用，仅作用于生产构建，在适当的时候开启几个子进程去并发的执行压缩
@@ -41,21 +49,22 @@ module.exports = {
             .set('@', path.join(__dirname, 'src'))
 
         // 修改插件配置
-        config.plugin('html').tap(args => {
-            args[0].minify = {
-                removeComments: true,
-                collapseWhitespace: false,
-                removeAttributeQuotes: false
-            };
-            return args;
-        });
+        // config.plugin('html').tap(args => {
+        //     args[0].minify = {
+        //         removeComments: true,
+        //         collapseWhitespace: false,
+        //         removeAttributeQuotes: false
+        //     };
+        //     return args;
+        // });
 
     },
     //调整 webpack 配置 https://cli.vuejs.org/zh/guide/webpack.html#%E7%AE%80%E5%8D%95%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F
     configureWebpack: config => {
 
         // console.log(config.entry);
-        // config.entry.vendors= ["vue", "vue-router", "flagwind-core"];
+        // config.entry.vendors= ["vue", "vue-router", "flagwind-core", "@egova/flagwind-web", "iview"];
+        
     },
     css: {
         // 启用 CSS modules

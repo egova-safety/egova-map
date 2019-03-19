@@ -1,6 +1,6 @@
 import { component, config } from "../decorator";
 import base from "@egova/map-base";
-import Component from "@/components/component";
+import ComponentBase from "@/components/component";
 
 /**
  * 事件定义。
@@ -15,7 +15,7 @@ const EVENTS = ["click"];
  * @version 1.0.0
  */
 @component({ template: require("./overlay.html") })
-export default class Overlay extends Component {
+export default class Overlay extends ComponentBase {
 
     public visible: boolean = true;
 

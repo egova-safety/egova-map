@@ -1,7 +1,7 @@
 
 import { component, config } from "../decorator";
 import base from "@egova/map-base";
-import Component from "@/components/component";
+import ComponentBase from "@/components/component";
 
 /**
  * 事件定义。
@@ -18,7 +18,7 @@ const EXCULDE_NAMES = ["command","options"];
  * @version 1.0.0
  */
 @component({ template: require("./select-box.html")  })
-export default class SelectBoxComponent extends Component {
+export default class SelectBoxComponent extends ComponentBase {
 
     @config({ type: Number, default: 2 })
     public selectMode: base.SelectMode = 2;

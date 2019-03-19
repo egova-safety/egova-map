@@ -1,39 +1,8 @@
 {
+    "extends": "../tsconfig.settings.json",
     "compilerOptions": {
-        "module": "esnext",
-        "target": "es5",
-        "moduleResolution": "node",
-        "stripInternal": true,
-        "pretty": true,
-        "noImplicitAny": true,
-        "noImplicitThis": true,
-        "noImplicitReturns": true,
-        "noUnusedLocals": true,
-        "strictNullChecks": false,
-        "suppressImplicitAnyIndexErrors": true,
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
-        "allowSyntheticDefaultImports": true,
-        "declaration": true,
-        "noEmitHelpers": false,
-        "declarationDir": "./types",
+        "outDir": "dist",
         "baseUrl": "./",
-        "strict": true,
-        "jsx": "preserve",
-        "importHelpers": true,
-
-        "esModuleInterop": true,
-
-        "sourceMap": true,
-
-        "types": [
-            "node", "webpack-env"
-        ],
-        "lib": [
-            "dom",
-            "es5",
-            "es2015.promise"
-        ],
         "paths": {
             "*": ["types/*"],
             "@/*": [
@@ -41,12 +10,14 @@
             ]
         }
     },
-    "include": [
-        "src/**/*.ts",
-        "src/**/*.tsx",
-        "src/**/*.vue"
-    ],
-    "exclude": [
-        "node_modules/**"
-    ]
+
+    "references": [{
+        "path": "../base"
+    }, {
+        "path": "../ui"
+    }, {
+        "path": "../arcgis"
+    }, {
+        "path": "../minemap"
+    }]
 }

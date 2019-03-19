@@ -40,5 +40,3 @@ MapLoader.loadScript(setting).then(() => {
     // 启动应用程序
     flagwind.Application.start(context);
 });
-// let context = ApplicationContext.current;
-// flagwind.Application.start(context);

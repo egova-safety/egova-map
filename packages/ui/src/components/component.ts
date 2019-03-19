@@ -1,5 +1,5 @@
-import Vue from "vue";
 import Activator from "./activator";
+import Vue from "vue";
 import base from "@egova/map-base";
 
 /**
@@ -7,7 +7,7 @@ import base from "@egova/map-base";
  * @class
  * @version 1.0.0
  */
-export default abstract class Component extends Vue {
+export default abstract class ComponentBase extends Vue {
     protected _map!: base.MapView; // 高德地图实例
     protected _mapComponent: any; // 高德组件实例
 
@@ -179,12 +179,17 @@ export default abstract class Component extends Vue {
         if (minemapSDK.default) {
             minemapSDK = minemapSDK.default;
         }
+        let serviceType: any;
         if (mapType === "arcgis") {
-            return (<any>arcgisSDK)[name];
+            serviceType = (<any>arcgisSDK)[name];
         } else if (mapType === "minemap") {
-            return (<any>minemapSDK)[name];
+            serviceType = (<any>minemapSDK)[name];
         } else {
             throw new Error("不支持的地图类型" + mapType);
         }
+        if (serviceType === undefined) {
+            throw new Error(`在地图类型${mapType}中，未找到类型为${name}的成员`);
+        }
+        return serviceType;
     }
 }

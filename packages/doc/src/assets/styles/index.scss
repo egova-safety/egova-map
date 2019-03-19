@@ -4,5 +4,9 @@
 @import "./common/mixin";
 @import "./views/error";
 
+
+@import "./base.scss";
+@import "./layout.scss";
+@import "./components/index.scss";
 // 第三方css
 @import "~iview/dist/styles/iview.css";

@@ -1,7 +1,7 @@
 
 import { component, config } from "../decorator";
 import base from "@egova/map-base";
-import Component from "@/components/component";
+import ComponentBase from "@/components/component";
 
 /**
  * 事件定义。
@@ -30,7 +30,7 @@ const EXCULDE_NAMES = ["requestData", "requestStatus", "vid", "source" , "option
  * @version 1.0.0
  */
 @component({ template: require("./point-layer.html") })
-export default class PointLayerComponent extends Component {
+export default class PointLayerComponent extends ComponentBase {
 
     /**
      * 获取或设置图层ID。
@@ -48,13 +48,13 @@ export default class PointLayerComponent extends Component {
     /**
      * 是否启用坐标修改功能
      */
-    @config({ type: Boolean })
+    @config({ type: Boolean, default: false })
     public enableEdit: boolean = false;
 
     /**
      * 是否启用聚合
      */
-    @config({ type: Boolean })
+    @config({ type: Boolean, default: false })
     public enableCluster: boolean = false;
 
     @config({ type: Object })
@@ -63,7 +63,7 @@ export default class PointLayerComponent extends Component {
     /**
      * 选择模式（0为未启用 1为多选，2为单选）
      */
-    @config({ type: Number })
+    @config({ type: Number, default: 0 })
     public selectMode: number = 0;
 
     /**
@@ -75,19 +75,19 @@ export default class PointLayerComponent extends Component {
     /**
      * 是否异步请求数据
      */
-    @config({ type: Boolean })
+    @config({ type: Boolean, default: false })
     public requestData: boolean = false;
 
     /**
      * 是否异步请求状态
      */
-    @config({ type: Boolean })
+    @config({ type: Boolean, default: false })
     public requestStatus: boolean = false;
 
     /**
      * 要素悬停时，是否显示tooltip信息
      */
-    @config({ type: Boolean })
+    @config({ type: Boolean, default: false })
     public showTooltip: boolean = false;
 
     /**

@@ -1,7 +1,7 @@
 
 import { component, config } from "../decorator";
 import base from "@egova/map-base";
-import Component from "@/components/component";
+import ComponentBase from "@/components/component";
 
 /**
  * 事件定义。
@@ -18,7 +18,7 @@ const EXCULDE_NAMES = ["vid", "source" , "options"];
  * @version 1.0.0
  */
 @component({ template: require("./heatmap-layer.html") })
-export default class HeatmapLayerComponent extends Component {
+export default class HeatmapLayerComponent extends ComponentBase {
 
     /**
      * 获取或设置图层ID。

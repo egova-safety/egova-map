@@ -1,32 +1,60 @@
 const path = require("path");
 const webpack = require("webpack");
 
-function resolve(dir)
-{
+function resolve(dir) {
     return path.join(__dirname, "..", dir);
 }
 
-module.exports =
-{
-    resolve:
-    {
+module.exports = {
+    node: {
+        setImmediate: false,
+        process: 'mock',
+        dgram: 'empty',
+        fs: 'empty',
+        net: 'empty',
+        tls: 'empty',
+        child_process: 'empty'
+    },
+    resolve: {
         extensions: [".js", ".vue", ".json", ".ts"],
-        alias:
-        {
+        alias: {
             "vue$": "vue/dist/vue.esm.js",
             "src": resolve("src")
         }
     },
-    module:
-    {
-        rules:
-        [
-            {
-                test: /\.ts$/,
-                exclude: /node_modules/,
-                enforce: "pre",
-                loader: "tslint-loader"
-            },
+    module: {
+        noParse: /^(vue|vue-router|vuex|vuex-router-sync)$/,
+        rules: [
+            // {
+            //     test: /\.ts$/,
+            //     exclude: /node_modules/,
+            //     enforce: "pre",
+            //     loader: "tslint-loader"
+            // },
+            // {
+            //     test: /\.ts$/,
+            //     use: [
+            //         /* config.module.rule('ts').use('cache-loader') */
+            //         // {
+            //         //     loader: 'cache-loader'
+            //         // },
+            //         /* config.module.rule('ts').use('babel-loader') */
+            //         // {
+            //         //     loader: 'babel-loader'
+            //         // },
+            //         /* config.module.rule('ts').use('ts-loader') */
+            //         {
+            //             loader: 'ts-loader',
+            //             options: {
+            //                 transpileOnly: true,
+            //                 appendTsSuffixTo: [
+            //                     '\\.vue$'
+            //                 ],
+            //                 happyPackMode: false
+            //             }
+            //         }
+            //     ]
+            // },
             {
                 test: /\.tsx?$/,
                 loader: "ts-loader",
@@ -44,31 +72,26 @@ module.exports =
             {
                 test: /\.vue$/,
                 loader: "vue-loader",
-                options:
-                {
-                    loaders:
-                    {
+                options: {
+                    loaders: {
                         css: "vue-style-loader!css-loader",
                         less: "vue-style-loader!css-loader!less-loader"
                     },
-                    postLoaders:
-                    {
+                    postLoaders: {
                         html: "babel-loader"
                     }
                 }
             },
             {
                 test: /\.css$/,
-                use:
-                [
+                use: [
                     "style-loader",
                     "css-loader"
                 ]
             },
             {
                 test: /\.less$/,
-                use:
-                [
+                use: [
                     "style-loader",
                     "css-loader",
                     "less-loader"
@@ -76,8 +99,7 @@ module.exports =
             },
             {
                 test: /\.scss$/,
-                use:
-                [
+                use: [
                     "style-loader",
                     "css-loader",
                     "sass-loader?sourceMap"
@@ -93,8 +115,7 @@ module.exports =
             }
         ]
     },
-    plugins:
-    [
+    plugins: [
         new webpack.optimize.ModuleConcatenationPlugin()
     ]
 };

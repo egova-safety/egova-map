@@ -1,0 +1,106 @@
+// /*!
+//  * Authors:
+//  *      jason <jasonsoop@gmail.com>
+//  *
+//  * Licensed under the MIT License.
+//  * Copyright (C) 2010-2017 Flagwind Inc. All rights reserved.
+//  */
+
+// /* ============================== 布局(Layout) =========================== */
+.layout {
+    .ivu-layout-header{
+        background:white;
+        border-bottom-width: 1px!important;
+        border-bottom-color: black!important;
+    }
+    .ivu-layout-content{
+        margin-top: 2px;
+        background-color: white;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        display: block;
+    }
+
+    h1,
+    h2,
+    blockquote {
+        margin: 12px 0;
+    }
+
+    h3 {
+        margin: 8px 0;
+    }
+
+    h1 {
+        font-size: 26px;
+        font-weight: normal;
+    }
+
+    h2 {
+        font-size: 20px;
+        font-weight: normal;
+    }
+
+    h3 {
+        font-size: 16px;
+        font-weight: normal;
+    }
+
+    h4 {
+        font-size: 14px;
+        font-weight: normal;
+    }
+
+    h5 {
+        font-size: 12px;
+        font-weight: normal;
+    }
+
+    h6 {
+        font-size: 12px;
+        font-weight: normal;
+    }
+
+    blockquote {
+        margin-bottom: 20px;
+        padding: 5px 5px 3px 10px;
+        border-left: 4px solid #ddd;
+        line-height: 1.5;
+        color: #666;
+        font-size: 14px;
+    }
+
+    // ul:not([class^="ivu-"])
+    // {
+    //     padding-left: 40px;
+    //     list-style-type: disc;
+    // }
+
+    // li:not([class^="ivu-"])
+    // {
+    //     margin-bottom: 5px;
+    //     font-size: 14px;
+    // }
+
+    // ul ul:not([class^="ivu-"]), ol ul:not([class^="ivu-"])
+    // {
+    //     list-style-type: circle;
+    // }
+
+    p {
+        margin: 5px;
+        font-size: 14px;
+    }
+
+    a[target="_blank"]:after {
+        content: "\F220";
+        margin-left: 3px;
+        font-family: Ionicons;
+        color: #aaa;
+    }
+}

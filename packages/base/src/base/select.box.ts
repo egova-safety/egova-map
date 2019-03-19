@@ -22,7 +22,7 @@ export interface ISelectBox {
 
     deleteSelectBar(): void;
 
-    getLayerById(id: string): BusinessLayer;
+    getLayerById(id: string): BusinessLayer | null;
 
     deleteSelectBar(): void;
 

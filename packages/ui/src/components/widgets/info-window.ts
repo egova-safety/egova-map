@@ -1,6 +1,6 @@
 import { component, config } from "../decorator";
 import base from "@egova/map-base";
-import Component from "@/components/component";
+import ComponentBase from "@/components/component";
 
 /**
  * 事件定义。
@@ -15,7 +15,7 @@ const EVENTS = ["close", "click"];
  * @version 1.0.0
  */
 @component({ template: require("./info-window.html") })
-export default class InfoWindowComponent extends Component {
+export default class InfoWindowComponent extends ComponentBase {
     public _point: base.Point | undefined;
 
     public visible: boolean = false;

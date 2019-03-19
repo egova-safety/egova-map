@@ -30,10 +30,10 @@ export default class Workspace extends Vue {
     public constructor(workbench: IWorkbench) {
         let options =
         {
-            el: "#app",
+            el: "#workspace",
             router: ApplicationContext.current.router,
             store: ApplicationContext.current.store,
-            template: '<div id="app"><router-view /></div>'
+            template: '<div id="workspace"><router-view /></div>'
         };
 
         // 传入配置进行初始化

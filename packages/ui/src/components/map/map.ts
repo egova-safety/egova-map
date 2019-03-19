@@ -1,6 +1,6 @@
 import { component, config } from "../decorator";
 import base from "@egova/map-base";
-import Component from "@/components/component";
+import ComponentBase from "@/components/component";
 import SETTING from "@/config";
 import { MapLoader } from "@/common";
 
@@ -39,7 +39,7 @@ const EXCULDE_NAMES = ["setting", "vid", "options"];
  * @version 1.0.0
  */
 @component({ template: require("./map.html") })
-export default class MapComponent extends Component {
+export default class MapComponent extends ComponentBase {
     /**
      * 获取地图的DOM节点。
      * @public

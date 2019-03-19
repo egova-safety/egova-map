@@ -1,7 +1,7 @@
 
 import { component, config } from "../decorator";
 import base from "@egova/map-base";
-import Component from "@/components/component";
+import ComponentBase from "@/components/component";
 
 /**
  * 事件定义。
@@ -18,7 +18,7 @@ const EXCULDE_NAMES = ["enabled"];
  * @version 1.0.0
  */
 @component({ template: ""  })
-export default class ContextMenuComponent extends Component {
+export default class ContextMenuComponent extends ComponentBase {
 
     @config({ type: Array})
     public menus!: Array<string>;

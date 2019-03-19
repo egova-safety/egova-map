@@ -20,6 +20,7 @@ import Example from "../components/example";
 import mapUI from "@egova/map-ui";
 
 // 倒入全局样式
+import "iview/dist/styles/iview.css";
 import "@egova/flagwind-web/dist/styles/flagwind.css";
 import "../assets/styles/index.scss";
 
@@ -110,7 +111,8 @@ export default class Workbench extends WorkbenchBase {
         // 注册布局母版
         // Vue.component("l-generic", Generic);
         // 注册系统组件
-        Vue.use(components);
+        console.log(mapUI);
+        Vue.use(components.install);
         Vue.use(mapUI.install);
     }
 
