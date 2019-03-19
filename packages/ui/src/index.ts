@@ -6,4 +6,10 @@ import MapLoader from "./common/loader";
 
 import setting from "./config";
 
+export * from "./common/loader";
+
+export * from "./config";
+
+export * from "./components";
+
 export default { ...components, setting, MapLoader };
