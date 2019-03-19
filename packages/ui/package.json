@@ -2,7 +2,7 @@
     "name": "@egova/map-ui",
     "version": "1.0.9",
     "types": "dist/types/index.d.ts",
-    "main": "dist/egova-map-ui.common.js",
+    "main": "dist/egova-map-ui.umd.js",
     "publishConfig": {
         "access": "public"
     },

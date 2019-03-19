@@ -6,6 +6,4 @@ import MapLoader from "./common/loader";
 
 import setting from "./config";
 
-export { setting, MapLoader };
-export * from "./components";
-export default components;
+export default { ...components, setting, MapLoader };
