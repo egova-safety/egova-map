@@ -1,6 +1,6 @@
 {
     "name": "@egova/map-ui",
-    "version": "1.0.10",
+    "version": "1.0.11",
     "types": "dist/types/index.d.ts",
     "main": "dist/egova-map-ui.umd.js",
     "publishConfig": {
