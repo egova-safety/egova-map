@@ -3,7 +3,7 @@
   "types": "dist/types/index.d.ts",
   "main": "dist/egova-map-base.umd.js",
   "module": "dist/egova-map-base.es5.js",
-  "version": "1.0.7",
+  "version": "1.0.9",
   "publishConfig": {
     "access": "public"
   },
