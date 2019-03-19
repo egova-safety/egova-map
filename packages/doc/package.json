@@ -1,6 +1,6 @@
 {
     "name": "@egova/map-doc",
-    "version": "1.0.9",
+    "version": "1.0.10",
     "private": true,
     "scripts": {
         "dev": "webpack-dev-server --content-base test/ --open --inline --hot --compress --history-api-fallback --port 8010 --config build/webpack.dev.config.js",
@@ -11,7 +11,7 @@
     "dependencies": {
         "@egova/flagwind-echarts": "^1.0.1",
         "@egova/flagwind-web": "^1.0.14",
-        "@egova/map-arcgis": "^1.0.9",
+        "@egova/map-arcgis": "^1.0.10",
         "@egova/map-base": "^1.0.9",
         "@egova/map-minemap": "^1.0.9",
         "axios": "^0.18.0",

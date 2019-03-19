@@ -1,6 +1,6 @@
 {
     "name": "@egova/map-ui",
-    "version": "1.0.9",
+    "version": "1.0.10",
     "types": "dist/types/index.d.ts",
     "main": "dist/egova-map-ui.umd.js",
     "publishConfig": {
@@ -32,7 +32,7 @@
         "vue-property-decorator": "^7.3.0"
     },
     "optionalDependencies": {
-        "@egova/map-arcgis": "^1.0.9",
+        "@egova/map-arcgis": "^1.0.10",
         "@egova/map-minemap": "^1.0.9"
     },
     "devDependencies": {
