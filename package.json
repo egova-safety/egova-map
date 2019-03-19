@@ -2,11 +2,13 @@
     "name": "@egova/root",
     "version": "1.0.41",
     "scripts": {
-        "build": "lerna run build",
+        "serve": "lerna run serve",
+        "dist:ui": "lerna run dist --scope @egova/map-ui",
+        "dist:base": "lerna run dist --scope @egova/map-base",
+        "dist:minemap": "lerna run dist --scope @egova/map-minemap",
+        "dist:arcgis": "lerna run dist --scope @egova/map-arcgis",
         "dist": "lerna run dist",
-        "doc:build": "vue-cli-service build",
-        "doc:lint": "vue-cli-service lint",
-        "doc:serve": "vue-cli-service serve"
+        "build": "lerna run build"
     },
     "dependencies": {
     },
