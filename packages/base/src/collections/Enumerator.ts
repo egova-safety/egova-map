@@ -1,5 +1,5 @@
-import { IEnumerator } from ".";
 import { ArgumentException } from "../exceptions";
+import { IEnumerator } from "./IEnumerator";
 
 /**
  * 表示一个默认的枚举器。

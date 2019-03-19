@@ -1,6 +1,6 @@
 import { component, View } from "@egova/flagwind-web";
 import base from "@egova/map-base";
-import * as codes from "@/codes";
+import * as codes from "@s/codes";
 
 @component({ template: require("./index.html") })
 export default class TrackLayerView extends View {

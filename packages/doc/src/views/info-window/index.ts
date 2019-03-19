@@ -1,7 +1,7 @@
 import { component, View } from "@egova/flagwind-web";
 import base from "@egova/map-base";
 import { InfoWindowComponent } from "@egova/map-ui";
-import * as codes from "@/codes";
+import * as codes from "@s/codes";
 
 @component({ template: require("./index.html") })
 export default class InfoWindowView extends View {

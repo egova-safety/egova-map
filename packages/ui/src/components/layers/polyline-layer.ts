@@ -48,32 +48,32 @@ export default class PolylineLayerComponent extends ComponentBase {
     /**
      * 选择模式（0为未启用 1为单选，2为多选）
      */
-    @config({ type: Number })
+    @config({ type: Number ,default: 0 })
     public selectMode: number = 0;
 
     /**
      * 要素单击时，是否显示信息窗口
      */
-    @config({ type: Boolean })
-    public showInfoWindow: boolean = false;
+    @config({ type: Boolean,default: false  })
+    public showInfoWindow: boolean;
 
     /**
      * 是否异常请求数据
      */
-    @config({ type: Boolean })
-    public requestData: boolean = false;
+    @config({ type: Boolean,default: false  })
+    public requestData: boolean ;
 
     /**
      * 是否异常请求状态
      */
-    @config({ type: Boolean })
-    public requestStatus: boolean = false;
+    @config({ type: Boolean,default: false  })
+    public requestStatus: boolean ;
 
     /**
      * 要素悬停时，是否显示tooltip信息
      */
-    @config({ type: Boolean })
-    public showTooltip: boolean = false;
+    @config({ type: Boolean,default: false  })
+    public showTooltip: boolean ;
 
     /**
      * 数据源

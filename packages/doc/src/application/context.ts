@@ -1,7 +1,7 @@
 import Router from "vue-router";
 import { Store } from "vuex";
 import flagwind from "flagwind-core";
-import Workbench from "@/application/workbench";
+import Workbench from "@s/application/workbench";
 import IWorkbench = flagwind.IWorkbench;
 import ApplicationContextBase = flagwind.ApplicationContextBase;
 import InvalidOperationException = flagwind.InvalidOperationException;

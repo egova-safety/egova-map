@@ -24,7 +24,7 @@ export default class TrackLayerComponent extends ComponentBase {
     public options: any;
 
     @config({ type: Number,default: 100 })
-    public speed: number = 100;
+    public speed: number;
 
     @config({ type: Object })
     public symbol: any;
@@ -32,8 +32,8 @@ export default class TrackLayerComponent extends ComponentBase {
     /**
      * 路径求解方式(Line,Segment)
      */
-    @config({ type: String })
-    public solveMode: string = "Line";
+    @config({ type: String ,default: "Line" })
+    public solveMode: string ;
 
     public get mapComponent(): base.TrackLayer {
         return this._mapComponent;

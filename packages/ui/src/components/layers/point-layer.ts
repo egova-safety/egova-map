@@ -1,4 +1,3 @@
-
 import { component, config } from "../decorator";
 import base from "@egova/map-base";
 import ComponentBase from "@/components/component";
@@ -22,7 +21,13 @@ const EVENTS = [
     "onEvent"
 ];
 
-const EXCULDE_NAMES = ["requestData", "requestStatus", "vid", "source" , "options"];
+const EXCULDE_NAMES = [
+    "requestData",
+    "requestStatus",
+    "vid",
+    "source",
+    "options"
+];
 
 /**
  * 点图层
@@ -31,7 +36,6 @@ const EXCULDE_NAMES = ["requestData", "requestStatus", "vid", "source" , "option
  */
 @component({ template: require("./point-layer.html") })
 export default class PointLayerComponent extends ComponentBase {
-
     /**
      * 获取或设置图层ID。
      * @description 静态属性，仅支持初始化配置。
@@ -49,17 +53,17 @@ export default class PointLayerComponent extends ComponentBase {
      * 是否启用坐标修改功能
      */
     @config({ type: Boolean, default: false })
-    public enableEdit: boolean = false;
+    public enableEdit: boolean;
 
     /**
      * 是否启用聚合
      */
     @config({ type: Boolean, default: false })
-    public enableCluster: boolean = false;
+    public enableCluster: boolean;
 
     @config({ type: Object })
     public symbol: any;
-    
+
     /**
      * 选择模式（0为未启用 1为多选，2为单选）
      */
@@ -69,26 +73,26 @@ export default class PointLayerComponent extends ComponentBase {
     /**
      * 要素单击时，是否显示信息窗口
      */
-    @config({ type: Boolean })
-    public showInfoWindow: boolean = false;
+    @config({ type: Boolean, default: false })
+    public showInfoWindow: boolean;
 
     /**
      * 是否异步请求数据
      */
     @config({ type: Boolean, default: false })
-    public requestData: boolean = false;
+    public requestData: boolean;
 
     /**
      * 是否异步请求状态
      */
     @config({ type: Boolean, default: false })
-    public requestStatus: boolean = false;
+    public requestStatus: boolean;
 
     /**
      * 要素悬停时，是否显示tooltip信息
      */
     @config({ type: Boolean, default: false })
-    public showTooltip: boolean = false;
+    public showTooltip: boolean;
 
     /**
      * 数据源
@@ -107,38 +111,51 @@ export default class PointLayerComponent extends ComponentBase {
      * @returns void
      */
     protected created(): void {
-
         // 监听 "source" 选项变动
-        this.$watch("source", (source: Array<any>) => {
-            if (this.mapComponent) {
-                this.mapComponent.clear();
-                this.mapComponent.saveGraphicList(source);
-            }
-
-        }, ({ deep: true }));
-
-        this.$watch("requestStatus", (v: boolean) => {
-            if (this.mapComponent) {
-                if (v) {
-                    this.mapComponent.start();
-                } else {
-                    this.mapComponent.stop();
+        this.$watch(
+            "source",
+            (source: Array<any>) => {
+                if (this.mapComponent) {
+                    this.mapComponent.clear();
+                    this.mapComponent.saveGraphicList(source);
                 }
-            }
+            },
+            { deep: true }
+        );
 
-        }, ({ deep: true }));
+        this.$watch(
+            "requestStatus",
+            (v: boolean) => {
+                if (this.mapComponent) {
+                    if (v) {
+                        this.mapComponent.start();
+                    } else {
+                        this.mapComponent.stop();
+                    }
+                }
+            },
+            { deep: true }
+        );
 
         // 监听其他选项变动
 
-        let watched = ["showTooltip", "showInfoWindow", "selectMode", "enableEdit"];
+        let watched = [
+            "showTooltip",
+            "showInfoWindow",
+            "selectMode",
+            "enableEdit"
+        ];
 
         for (let prop of watched) {
-            this.$watch(prop, v => {
-                if (this.mapComponent) {
-                    this.mapComponent.options[prop] = v;
-                }
-
-            }, { deep: true });
+            this.$watch(
+                prop,
+                v => {
+                    if (this.mapComponent) {
+                        this.mapComponent.options[prop] = v;
+                    }
+                },
+                { deep: true }
+            );
         }
     }
 
@@ -180,14 +197,14 @@ export default class PointLayerComponent extends ComponentBase {
         if (!map) {
             return;
         }
-        
+
         this.map = map;
 
         // 解析配置选项
         let options = this.resolveOptions();
 
         options = { ...this.options, ...options };
- 
+
         let serviceType = this.getMapClassType("ClusterLayer");
 
         this._mapComponent = this.getService<base.BusinessLayer>(
@@ -203,7 +220,7 @@ export default class PointLayerComponent extends ComponentBase {
             child.$emit("layer-ready", this._mapComponent);
         });
 
-        if (options["showInfoWindow"] && (!options["getInfoWindowContext"])) {
+        if (options["showInfoWindow"] && !options["getInfoWindowContext"]) {
             console.warn("没有定义getInfoWindowContext事件");
         }
 
@@ -212,11 +229,11 @@ export default class PointLayerComponent extends ComponentBase {
             this._mapComponent.saveGraphicList(this.source);
         }
 
-        if (this.requestData && (!options["getDataList"])) {
+        if (this.requestData && !options["getDataList"]) {
             console.warn("requestData为true时，必须定义getDataList事件");
         }
 
-        if (this.requestStatus && (!options["getLastStatus"])) {
+        if (this.requestStatus && !options["getLastStatus"]) {
             console.warn("requestStatus为true时，必须定义getLastStatus事件");
         }
 
@@ -228,5 +245,4 @@ export default class PointLayerComponent extends ComponentBase {
             this._mapComponent.start();
         }
     }
- 
 }

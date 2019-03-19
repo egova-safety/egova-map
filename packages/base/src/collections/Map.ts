@@ -1,5 +1,9 @@
-import { IMap, IEnumerator, KeyValuePair, Enumerator, IEnumerable } from ".";
 import { Exception } from "../exceptions";
+import { IMap } from "./IMap";
+import { IEnumerator } from "./IEnumerator";
+import { Enumerator } from "./Enumerator";
+import { KeyValuePair } from "./KeyValuePair";
+import { IEnumerable } from "./IEnumerable";
 
 /**
  * 表示一个用于存储键值对的数据结构。

@@ -3,8 +3,8 @@
     "version": "1.0.8",
     "private": true,
     "scripts": {
-        "dev": "webpack-dev-server --content-base test/ --open --inline --compress --history-api-fallback --port 8010 --config build/webpack.dev.config.js",
-        "serve": "vue-cli-service serve",
+        "serve": "webpack-dev-server --content-base test/ --open --inline --hot --compress --history-api-fallback --port 8010 --config build/webpack.dev.config.js",
+        "dev": "vue-cli-service serve",
         "build": "vue-cli-service build",
         "lint": "vue-cli-service lint"
     },
@@ -14,7 +14,6 @@
         "@egova/map-arcgis": "^1.0.8",
         "@egova/map-base": "^1.0.7",
         "@egova/map-minemap": "^1.0.8",
-        "@egova/map-ui": "^1.0.8",
         "axios": "^0.18.0",
         "clipboard": "^2.0.4",
         "esri-loader": "^2.4.0",

@@ -2,7 +2,7 @@ import Vue from "vue";
 
 import flagwind from "flagwind-core";
 import IWorkbench = flagwind.IWorkbench;
-import ApplicationContext from "@/application/context";
+import ApplicationContext from "@s/application/context";
 
 /**
  * 提供工作空间的常用功能。

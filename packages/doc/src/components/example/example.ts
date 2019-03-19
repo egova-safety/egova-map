@@ -112,7 +112,7 @@ export default class Example extends Component
      * @returns string
      */
     @config({default: ""})
-    public title: string = "";
+    public title: string;
 
     /**
      * 获取或设置是否以垂直方式展示。
@@ -122,7 +122,7 @@ export default class Example extends Component
      * @returns boolean
      */
     @config({default: false})
-    public vertical: boolean = false;
+    public vertical: boolean;
 
     /**
      * 获取或设置是否隐藏代码。
@@ -132,7 +132,7 @@ export default class Example extends Component
      * @returns boolean
      */
     @config({default: false})
-    public hideCode: boolean = false;
+    public hideCode: boolean;
     
     /**
      * 创建组件时调用的钩子方法。

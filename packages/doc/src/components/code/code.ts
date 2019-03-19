@@ -69,7 +69,7 @@ export default class Code extends Component
      * @returns string
      */
     @config({default: "javascript"})
-    public lang: string = "javascript";
+    public lang: string;
     
     /**
      * 获取或设置当前代码快的的标题。
@@ -79,7 +79,7 @@ export default class Code extends Component
      * @returns string
      */
     @config({default: "Example"})
-    public title: string = "Example";
+    public title: string;
 
     /**
      * 获取或设置是否为当前代码块呈现背景。

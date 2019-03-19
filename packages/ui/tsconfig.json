@@ -1,15 +1,33 @@
 {
     "extends": "../tsconfig.settings.json",
     "compilerOptions": {
+
+
+        "baseUrl": ".",
+        "declaration": true,
         "declarationDir": "./dist/types",
-        "outDir": "dist",
-        "baseUrl": "./",
+        "jsx": "preserve",
+        "lib": [
+            "esnext",
+            "dom",
+            "dom.iterable",
+            "scripthost"
+        ],
+        "module": "esnext",
+        "moduleResolution": "node",
         "paths": {
             "*": ["types/*"],
             "@/*": [
                 "src/*"
             ]
-        }
+        },
+        "target": "es5",
+        "types": [
+            "node"
+        ],
+        "rootDir": "src",
+        "outDir": "dist"
+
     },
     "references": [{
         "path": "../base"

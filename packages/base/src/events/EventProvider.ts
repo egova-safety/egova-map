@@ -1,6 +1,8 @@
-import { IEventProvider, EventArgs } from ".";
 import { ArgumentException } from "../exceptions";
 import { Type } from "../runtime";
+import { EventArgs } from "./EventArgs";
+import { IEventProvider } from "./IEventProvider";
+
 
 /**
  * 表示一个事件项。

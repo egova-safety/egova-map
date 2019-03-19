@@ -46,19 +46,9 @@ module.exports = {
         });
 
         config.resolve.alias
-            .set('@s', path.join(__dirname, 'src'))
-            .set('@egova/map-ui', path.join(__dirname, '../ui/src'))
-            .set('@', path.join(__dirname, '../ui/src'))
+            .set('@', path.join(__dirname, 'src'))
 
-        // 修改插件配置
-        config.plugin('html').tap(args => {
-            args[0].minify = {
-                removeComments: true,
-                collapseWhitespace: false,
-                removeAttributeQuotes: false
-            };
-            return args;
-        });
+ 
         // config.plugin('webpack-report')
         //     .use(BundleAnalyzerPlugin, [{
         //         analyzerMode: 'static',
@@ -69,16 +59,10 @@ module.exports = {
     //调整 webpack 配置 https://cli.vuejs.org/zh/guide/webpack.html#%E7%AE%80%E5%8D%95%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F
     configureWebpack: config => {
 
-        //console.log(config.resolveLoader.modulesDirectories);
-        config.entry.vendors= ["vue", "vue-router", "flagwind-core", "@egova/flagwind-web", "iview"];
-      
+        // console.log(config.entry);
+        config.output.libraryExport= 'default';
 
-        // config.resolveLoader= {
-        //     modules: [
-        //       path.resolve(__dirname, 'node_modules'),
-        //     ]
-        //   }
-
+        config.entry.vendors= ["vue", "esri-loader", "@egova/map-base", "@egova/map-arcgis", "@egova/map-minemap"];
     },
     css: {
         // 启用 CSS modules
@@ -93,9 +77,9 @@ module.exports = {
                 //设置css中引用文件的路径，引入通用使用的scss文件（如包含的@mixin）
                 data: `
 				$baseUrl: "/";
-                @import '@s/assets/styles/common/_var.scss';
-                @import '@s/assets/styles/common/_mixin.scss';
-                @import '@s/assets/styles/common/_function.scss';
+                @import '@/assets/styles/common/_var.scss';
+                @import '@/assets/styles/common/_mixin.scss';
+                @import '@/assets/styles/common/_function.scss';
 				`
             },
             less: {
@@ -118,9 +102,9 @@ module.exports = {
     // 第三方插件配置 https://www.npmjs.com/package/vue-cli-plugin-style-resources-loader
     pluginOptions: {
         'style-resources-loader': {
-            preProcessor: 'scss',
+            preProcessor: 'less',
             patterns: [
-                path.resolve(__dirname, './src/assets/styles/index.scss')
+                path.resolve(__dirname, './src/styles/index.less')
             ]
         }
     }

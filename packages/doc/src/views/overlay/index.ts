@@ -1,5 +1,5 @@
 import { component, View } from "@egova/flagwind-web";
-import * as codes from "@/codes";
+import * as codes from "@s/codes";
 
 import "./index.less";
 

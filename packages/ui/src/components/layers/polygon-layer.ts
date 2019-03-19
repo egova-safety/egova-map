@@ -1,4 +1,3 @@
-
 import { component, config } from "../decorator";
 import base from "@egova/map-base";
 import ComponentBase from "@/components/component";
@@ -20,7 +19,13 @@ const EVENTS = [
     "onVisibleChanged",
     "onEvent"
 ];
-const EXCULDE_NAMES = ["requestData", "requestStatus", "vid", "source","options"];
+const EXCULDE_NAMES = [
+    "requestData",
+    "requestStatus",
+    "vid",
+    "source",
+    "options"
+];
 
 /**
  * 面图层
@@ -48,32 +53,32 @@ export default class PolygonLayerComponent extends ComponentBase {
     /**
      * 选择模式（1为多选，2为单选）
      */
-    @config({ type: Number })
-    public selectMode: number = 0;
+    @config({ type: Number, default: 0 })
+    public selectMode: number;
 
     /**
      * 要素单击时，是否显示信息窗口
      */
-    @config({ type: Boolean })
+    @config({ type: Boolean, default: false })
     public showInfoWindow: boolean = false;
 
     /**
      * 是否异常请求数据
      */
-    @config({ type: Boolean })
-    public requestData: boolean = false;
+    @config({ type: Boolean, default: false })
+    public requestData: boolean;
 
     /**
      * 是否异常请求状态
      */
-    @config({ type: Boolean })
-    public requestStatus: boolean = false;
+    @config({ type: Boolean, default: false })
+    public requestStatus: boolean;
 
     /**
      * 要素悬停时，是否显示tooltip信息
      */
-    @config({ type: Boolean })
-    public showTooltip: boolean = false;
+    @config({ type: Boolean, default: false })
+    public showTooltip: boolean;
 
     /**
      * 数据源
@@ -101,7 +106,9 @@ export default class PolygonLayerComponent extends ComponentBase {
      */
     protected created(): void {
         // 监听 "source" 选项变动
-        this.$watch("source", (source: Array<any>) => {
+        this.$watch(
+            "source",
+            (source: Array<any>) => {
                 if (this.mapComponent) {
                     this.mapComponent.clear();
                     this.mapComponent.saveGraphicList(source);
@@ -110,7 +117,9 @@ export default class PolygonLayerComponent extends ComponentBase {
             { deep: true }
         );
 
-        this.$watch("requestStatus",(v: boolean) => {
+        this.$watch(
+            "requestStatus",
+            (v: boolean) => {
                 if (this.mapComponent) {
                     if (v) {
                         this.mapComponent.start();
@@ -127,11 +136,13 @@ export default class PolygonLayerComponent extends ComponentBase {
         let watched = ["showTooltip", "showInfoWindow"];
 
         for (let prop of watched) {
-            this.$watch(prop, v => {
-                if (this.mapComponent) {
-                    (<any>this.mapComponent.options)[prop] = v;
-                }
-            },
+            this.$watch(
+                prop,
+                v => {
+                    if (this.mapComponent) {
+                        (<any>this.mapComponent.options)[prop] = v;
+                    }
+                },
                 { deep: true }
             );
         }
@@ -222,5 +233,4 @@ export default class PolygonLayerComponent extends ComponentBase {
             this._mapComponent.start();
         }
     }
-
 }

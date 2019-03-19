@@ -1,6 +1,8 @@
-import { IEventProviderFactory, IEventProvider, EventProvider } from ".";
 import { ArgumentException } from "../exceptions";
 import { IMap,Map } from "../collections";
+import { IEventProvider } from "./IEventProvider";
+import { IEventProviderFactory } from "./IEventProviderFactory";
+import { EventProvider } from "./EventProvider";
 
 /**
  * 提供关于事件提供程序的功能。

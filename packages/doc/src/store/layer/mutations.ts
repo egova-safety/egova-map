@@ -9,7 +9,7 @@
 import { MutationTree } from "vuex";
 import flagwind from "flagwind-core";
 import ArgumentException = flagwind.ArgumentException;
-import * as models from "@/models";
+import * as models from "@s/models";
 import State from "./state";
 
 export function ADD(state: State, value: models.ILayerOptions): void {

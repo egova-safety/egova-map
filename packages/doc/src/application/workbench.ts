@@ -1,8 +1,8 @@
 import flagwind from "flagwind-core";
 import WorkbenchBase = flagwind.WorkbenchBase;
 import ApplicationContextBase = flagwind.ApplicationContextBase;
-import ApplicationContext from "@/application/context";
-import Workspace from "@/application/workspace";
+import ApplicationContext from "@s/application/context";
+import Workspace from "@s/application/workspace";
 
 import Vue from "vue";
 import Router from "vue-router";

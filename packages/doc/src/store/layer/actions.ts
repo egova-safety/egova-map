@@ -6,7 +6,7 @@
  * Copyright (C) 2010-present Flagwind Inc. All rights reserved. 
  */
 
-import * as models from "@/models";
+import * as models from "@s/models";
 import { ActionTree, ActionContext } from "vuex";
 import State from "./state";
 

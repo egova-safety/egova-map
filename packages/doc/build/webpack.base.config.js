@@ -6,15 +6,6 @@ function resolve(dir) {
 }
 
 module.exports = {
-    node: {
-        setImmediate: false,
-        process: 'mock',
-        dgram: 'empty',
-        fs: 'empty',
-        net: 'empty',
-        tls: 'empty',
-        child_process: 'empty'
-    },
     resolve: {
         extensions: [".js", ".vue", ".json", ".ts"],
         alias: {
@@ -23,14 +14,13 @@ module.exports = {
         }
     },
     module: {
-        noParse: /^(vue|vue-router|vuex|vuex-router-sync)$/,
         rules: [
-            // {
-            //     test: /\.ts$/,
-            //     exclude: /node_modules/,
-            //     enforce: "pre",
-            //     loader: "tslint-loader"
-            // },
+            {
+                test: /\.ts$/,
+                exclude: /node_modules/,
+                enforce: "pre",
+                loader: "tslint-loader"
+            },
             // {
             //     test: /\.ts$/,
             //     use: [

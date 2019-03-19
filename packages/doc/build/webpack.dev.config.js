@@ -9,6 +9,7 @@ const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
 const PreloadPlugin = require("preload-webpack-plugin");
 const { VueLoaderPlugin } = require('vue-loader');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin; //Webpack包文件分析器
 function resolve(dir) {
     return path.join(__dirname, "..", dir);
 }
@@ -20,7 +21,7 @@ module.exports = webpackMerge(webpackBaseConfig, {
         app: [
             './src/main.ts'
         ],
-        // vendors: ["vue", "vue-router", "flagwind-core", "@egova/flagwind-web", "iview", "@egova/map-base", "@egova/map-ui"]
+        vendors: ["vue", "vue-router", "flagwind-core", "@egova/flagwind-web", "iview", "@egova/map-base", "@egova/map-ui"]
     },
     resolve: {
         alias: {
@@ -36,22 +37,15 @@ module.exports = webpackMerge(webpackBaseConfig, {
         chunkFilename: "[name].chunk.js",
         globalObject: 'this'
     },
-    // optimization: {
-    //     splitChunks: {
-    //         chunks: 'all'
-    //     },
-    //     runtimeChunk: {
-    //         name: 'runtime'
-    //     }
-    // },
+    optimization: {
+        splitChunks: {
+            chunks: 'all'
+        },
+        runtimeChunk: {
+            name: 'runtime'
+        }
+    },
     plugins: [
-        new VueLoaderPlugin(),
-        new webpack.DefinePlugin({
-            'process.env': {
-                NODE_ENV: '"development"',
-                BASE_URL: '""'
-            }
-        }),
         new FriendlyErrorsWebpackPlugin({
             additionalTransformers: [
                 function () {
@@ -69,9 +63,9 @@ module.exports = webpackMerge(webpackBaseConfig, {
             chunkFilename: 'static/css/[name].[contenthash:8].css'
         }),
         /* config.plugin('hmr') */
-        new webpack.HotModuleReplacementPlugin(),
+        // new webpack.HotModuleReplacementPlugin(),
         /* config.plugin('progress') */
-        new webpack.ProgressPlugin(),
+        // new webpack.ProgressPlugin(),
         /* config.plugin('html') */
         new HtmlWebpackPlugin({
             inject: true,
@@ -83,20 +77,6 @@ module.exports = webpackMerge(webpackBaseConfig, {
                 removeAttributeQuotes: false
             }
         }),
-        /* config.plugin('preload') */
-        // new PreloadPlugin({
-        //     rel: 'preload',
-        //     include: 'initial',
-        //     fileBlacklist: [
-        //         /\.map$/,
-        //         /hot-update\.js$/
-        //     ]
-        // }),
-        /* config.plugin('prefetch') */
-        // new PreloadPlugin({
-        //     rel: 'prefetch',
-        //     include: 'asyncChunks'
-        // }),
         /* config.plugin('copy') */
         new CopyWebpackPlugin(
             [{
@@ -109,15 +89,6 @@ module.exports = webpackMerge(webpackBaseConfig, {
                 ]
             }]
         ),
-        /* config.plugin('fork-ts-checker') */
-        new ForkTsCheckerWebpackPlugin({
-            vue: true,
-            tslint: true,
-            formatter: 'codeframe',
-            checkSyntacticErrors: false,
-            reportFiles: [
-                'src/**/*.{ts,tsx}'
-            ]
-        })
+        new BundleAnalyzerPlugin()
     ]
 });

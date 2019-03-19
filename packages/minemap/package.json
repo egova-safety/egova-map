@@ -16,8 +16,8 @@
     "lint": "tslint src/**/*.ts"
   },
   "peerDependencies": {
-    "@turf/turf": "^5.1.6",
-    "@egova/map-base": "*"
+    "@egova/map-base": "*",
+    "@turf/turf": "^5.1.6"
   },
   "devDependencies": {
     "@egova/map-base": "^1.0.7",

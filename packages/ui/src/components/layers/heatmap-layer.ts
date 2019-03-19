@@ -37,7 +37,7 @@ export default class HeatmapLayerComponent extends ComponentBase {
      * 模糊半径
      */
     @config({ type: Number, default: 12 })
-    public blurRadius: number = 12;
+    public blurRadius: number;
 
     /**
      * 颜色

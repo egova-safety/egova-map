@@ -1,5 +1,6 @@
 import flagwind from "flagwind-core";
 import ApplicationContext from "./application/context";
+
 import { setting, MapLoader } from "@egova/map-ui";
 
 // 获取应用上下文
@@ -31,10 +32,9 @@ setting.minemap = {
         minZoom: 3
     }
 };
-(<any>setting.minemap).mainJS =
-    "http://113.106.54.47:1180/minemapapi/demo/js/minemap-wmts.js";
-setting.mapType = (<any>window).mapType || "minemap";
-alert(setting.mapType);
+(<any>setting.minemap).mainJS = "http://113.106.54.47:1180/minemapapi/demo/js/minemap-wmts.js";
+setting.mapType = (<any>window).mapType || "arcgis";
+
 MapLoader.loadCss(setting);
 MapLoader.loadScript(setting).then(() => {
     // 启动应用程序

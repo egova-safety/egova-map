@@ -339,13 +339,7 @@ export class TrackSegment {
         this.isRunning = true;
         this.timer = window.setInterval(() => {
             if (!this.line) {
-                console.log(
-                    "线路" +
-                        this.name +
-                        "的第" +
-                        (this.index + 1) +
-                        "路段等待设置"
-                );
+                console.log(`线路${this.name} 的第${this.index+1} 路段等待设置`);
             } else {
                 this.move();
             }
