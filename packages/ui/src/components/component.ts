@@ -47,6 +47,13 @@ export default abstract class ComponentBase extends Vue {
         this._mapComponent = value;
     }
 
+    public get childrenComponents(): Array<ComponentBase> {
+        if (this.$slots.default) {
+            return this.$slots.default.filter(g => g.componentInstance != null).map(g => <ComponentBase>g.componentInstance);
+        }
+        return [];
+    }
+
     /**
      * 初始化组件的新示例。
      * @constructor

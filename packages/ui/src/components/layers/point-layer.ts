@@ -168,6 +168,7 @@ export default class PointLayerComponent extends ComponentBase {
     protected mounted(): void {
         // 调用基类方法
         super.mounted();
+
         // 初始化标记组件
         this.$on("map-ready", this.initialize);
     }
@@ -216,8 +217,8 @@ export default class PointLayerComponent extends ComponentBase {
 
         this.$emit("on-build", this._mapComponent);
 
-        this.$children.forEach(child => {
-            child.$emit("layer-ready", this._mapComponent);
+        this.childrenComponents.forEach(vnode => {
+            vnode.$emit("map-ready", this._mapComponent);
         });
 
         if (options["showInfoWindow"] && !options["getInfoWindowContext"]) {

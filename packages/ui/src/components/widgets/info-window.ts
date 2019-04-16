@@ -158,8 +158,7 @@ export default class InfoWindowComponent extends ComponentBase {
      */
     protected triggerEvent(event: any): void {
         let el = <HTMLElement>event.target;
-        let eventName =
-            el.attributes.getNamedItem("event")!.value || event.target.dataset.event || "click";
+        let eventName = el.attributes["event"] || el.dataset.event || "click";
         this.$emit(eventName, event.target);
     }
 

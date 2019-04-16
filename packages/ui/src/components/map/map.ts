@@ -137,7 +137,6 @@ export default class MapComponent extends ComponentBase {
      * @returns void
      */
     protected mounted(): void {
-        console.log(base);
         // 调用基类方法
         super.mounted();
 
@@ -192,9 +191,8 @@ export default class MapComponent extends ComponentBase {
         this.$emit("on-build", this._mapComponent);
         // 通知外部组件地图已准备就绪
         this.$emit("map-ready", this.map);
-
         // 通知所有子组件地图已准备就绪
-        this.$children.forEach(child => {
+        this.childrenComponents.forEach(child => {
             child.$emit("map-ready", this.map);
         });
     }

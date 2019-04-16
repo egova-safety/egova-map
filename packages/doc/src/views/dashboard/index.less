@@ -1,76 +1,50 @@
-.layout {
+.layout{
     border: 1px solid #d7dde4;
     background: #f5f7f9;
-    position: relative;
-    border-radius: 4px;
-    overflow: hidden;
-    &-header-bar {
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    a{
+        color: white;
+    }
+
+    .ivu-row-flex{
+        height: 100%;
+    }
+    &-breadcrumb{
+        padding: 10px 15px 0;
+    }
+    &-content{
+        min-height: 200px;
+        margin: 15px;
+        overflow: hidden;
         background: #fff;
-        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
     }
-    &-content {
-        margin: 20px 30px;
+    &-content-main{
+        padding: 10px;
     }
-    .layout-logo-left {
+    &-copy{
+        text-align: center;
+        padding: 10px 0 20px;
+        color: #9ea7b4;
+    }
+    &-menu-left{
+        background: #464c5b;
+    }
+    &-header{
+        height: 60px;
+        background: #fff;
+        box-shadow: 0 1px 1px rgba(0,0,0,.1);
+    }
+    &-logo-left{
         width: 90%;
         height: 30px;
         background: #5b6270;
         border-radius: 3px;
         margin: 15px auto;
     }
-    .ivu-layout-sider-collapsed{
-        .ivu-menu{
-            font-size: 30px;
-            span{
-                display: none;
-            }
-            .ivu-icon-ios-arrow-down{
-                display: none;
-            }
-            .ivu-menu-item{
-                padding-left:20px! important; 
-            }
-        }
-    }
-    .menu-icon {
-        transition: all 0.3s;
-    }
-    .rotate-icon {
-        transform: rotate(-90deg);
-    }
-    .menu-item span {
-        display: inline-block;
-        overflow: hidden;
-        width: 69px;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        vertical-align: bottom;
-        transition: width 0.2s ease 0.2s;
-    }
-    .menu-item i {
-        transform: translateX(0px);
-        transition: font-size 0.2s ease, transform 0.2s ease;
-        vertical-align: middle;
-        font-size: 16px;
-    }
-    .layout-header-bar {
-        i {
-            cursor: pointer;
-        }
-    }
-    .collapsed-menu span {
-        width: 0px;
-        transition: width 0.2s ease;
-    }
-    .collapsed-menu i {
-        transform: translateX(5px);
-        transition: font-size 0.2s ease 0.2s, transform 0.2s ease 0.2s;
-        vertical-align: middle;
-        font-size: 22px;
-    }
-    .ivu-menu-item {
-        a {
-            color: white;
-        }
-    }
 }
+

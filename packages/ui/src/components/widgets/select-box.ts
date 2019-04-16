@@ -91,9 +91,14 @@ export default class SelectBoxComponent extends ComponentBase {
 
         let selecbox = this.getService<base.ISelectBox>(serviceType, this.map, options);
 
-        this.$children.forEach(child => {
-            child.$emit("map-ready", this.map);
-            selecbox.addLayer((<any>child).mapComponent);
+        // this.$children.forEach(child => {
+        //     child.$emit("map-ready", this.map);
+        //     selecbox.addLayer((<any>child).mapComponent);
+        // });
+
+        this.childrenComponents.forEach(vnode => {
+            vnode.$emit("map-ready", this.map);
+            selecbox.addLayer(vnode.mapComponent);
         });
 
         this._mapComponent = selecbox;

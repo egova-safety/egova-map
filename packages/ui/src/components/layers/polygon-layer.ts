@@ -204,8 +204,8 @@ export default class PolygonLayerComponent extends ComponentBase {
 
         this.$emit("on-build", this._mapComponent);
 
-        this.$children.forEach(child => {
-            child.$emit("layer-ready", this._mapComponent);
+        this.childrenComponents.forEach(vnode => {
+            vnode.$emit("layer-ready", this._mapComponent);
         });
 
         if (options["showInfoWindow"] && !options["getInfoWindowContext"]) {

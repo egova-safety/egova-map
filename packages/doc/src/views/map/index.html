@@ -17,16 +17,11 @@
 
 
 
+
+
     <h2>三、代码示例</h2>
-    <u-example title="基本使用" :hideCode="true">
-        <template slot="case">
-            <fm-map vid="esri_map" ></fm-map>
-        </template>
-        <template slot="desc">
-            <p></p>
-        </template>
-        <u-code slot="code" lang="html">{{code.map }}</u-code>
-    </u-example>
+    <u-code-editor :template="opt.template" :code="opt.code" :css="opt.css" immediate="true" height="500"></u-code-editor>
+
     <div class="api">
         <h2>API</h2>
         <h3>属性</h3>

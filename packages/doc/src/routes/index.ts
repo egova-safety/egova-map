@@ -19,6 +19,10 @@ const routes = [
                 component: () => import("@s/views/map")
             },
             {
+                path: "/test",
+                component: () => import("@s/views/test")
+            },
+            {
                 path: "/point-layer",
                 component: () => import("@s/views/point-layer")
             },

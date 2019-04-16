@@ -1,13 +1,12 @@
 import flagwind from "flagwind-core";
 import ApplicationContext from "./application/context";
-
-import { setting, MapLoader } from "@egova/map-ui";
+import mapUI from "@egova/map-ui";
 
 // 获取应用上下文
 let context = ApplicationContext.current;
 
-setting.arcgis = {
-    ...setting.arcgis,
+mapUI.setting.arcgis = {
+    ...mapUI.setting.arcgis,
     ...{
         center: [118.573, 37.446],
         wkid: 4326,
@@ -20,8 +19,8 @@ setting.arcgis = {
     }
 };
 
-setting.minemap = {
-    ...setting.minemap,
+mapUI.setting.minemap = {
+    ...mapUI.setting.minemap,
     ...{
         mapDomain: "113.106.54.47:1180", // 四维图新api地址信息，云南现网使用IP "10.166.190.228"
         mapVersion: "v1.3",
@@ -32,11 +31,11 @@ setting.minemap = {
         minZoom: 3
     }
 };
-(<any>setting.minemap).mainJS = "http://113.106.54.47:1180/minemapapi/demo/js/minemap-wmts.js";
-setting.mapType = (<any>window).mapType || "arcgis";
+(<any>mapUI.setting.minemap).mainJS = "http://113.106.54.47:1180/minemapapi/demo/js/minemap-wmts.js";
+mapUI.setting.mapType = (<any>window).mapType || "arcgis";
 
-MapLoader.loadCss(setting);
-MapLoader.loadScript(setting).then(() => {
+mapUI.MapLoader.loadCss(mapUI.setting);
+mapUI.MapLoader.loadScript(mapUI.setting).then(() => {
     // 启动应用程序
     flagwind.Application.start(context);
 });

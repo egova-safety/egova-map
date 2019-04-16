@@ -18,7 +18,7 @@ const EXCULDE_NAMES = ["options"];
  */
 @component({ template: require("./edit-layer.html") })
 export default class EditLayerComponent extends ComponentBase {
-    
+
     @config({ type: Object })
     public options: any;
 
@@ -81,15 +81,23 @@ export default class EditLayerComponent extends ComponentBase {
 
         let serviceType = this.getMapClassType("EditLayer");
 
-        if (this.$children.length === 0) {
+        // if (this.$children.length === 0) {
+        //     throw new Error("未添加待编辑的图层");
+        // }
+
+        // this.$children.forEach(child => {
+        //     child.$emit("map-ready", this.map);
+        // });
+
+        if (this.childrenComponents.length === 0) {
             throw new Error("未添加待编辑的图层");
         }
 
-        this.$children.forEach(child => {
-            child.$emit("map-ready", this.map);
+        this.childrenComponents.forEach(vnode => {
+            vnode.$emit("map-ready", this.map);
         });
 
-        let layer = (<ComponentBase>this.$children[0]).mapComponent;
+        let layer = this.childrenComponents[0].mapComponent;
 
         this._mapComponent = this.getService<base.IEditLayer>(
             serviceType,

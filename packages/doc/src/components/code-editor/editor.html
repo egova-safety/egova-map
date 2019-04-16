@@ -1,0 +1,27 @@
+<div class="u-code-editor" >
+    <div class="rune">
+        <i-tabs>
+            <i-tab-pane label="Html" icon="logo-apple">
+                <monaco-editor class="editor" v-model="iTemplate" theme='theme' :options="options" language="html">
+                </monaco-editor>
+            </i-tab-pane>
+            <i-tab-pane label="CSS" icon="logo-windows">
+                <monaco-editor class="editor" v-model="iCss" theme='theme' :options="options" language="css">
+                </monaco-editor>
+            </i-tab-pane>
+            <i-tab-pane label="JavaScript" icon="logo-tux">
+                <monaco-editor class="editor" v-model="iCode" theme='theme' :options="options" language="javascript">
+                </monaco-editor>
+            </i-tab-pane>
+            <i-button class="btn-run" ghost size="small" slot="extra" @click="onRunScript" shape="circle" icon="ios-play"></i-button>
+        </i-tabs>
+        <div class="result">
+            <div class="result-title">结果</div>
+            <div class="result-content" ref="demo">
+            </div>
+        </div>
+    </div>
+    <!--组件样式-->
+    <div v-html="style"></div>
+    <!--组件模版-->
+</div>

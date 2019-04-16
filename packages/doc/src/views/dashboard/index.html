@@ -1,12 +1,13 @@
-<div class="layout">
-    <i-layout>
-        <i-sider ref="side" hide-trigger collapsible :collapsed-width="78" v-model="isCollapsed">
-            <i-menu v-if="menu.visible" :class="menuitemClasses" width="auto" :key="menu.name" theme="dark">
+<div class="layout" :class="{'layout-hide-text': spanLeft < 5}">
+    <i-row type="flex">
+        <i-col :span="spanLeft" class="layout-menu-left">
+            <i-menu v-if="menu.visible" width="auto" :key="menu.name" theme="dark">
                 <template v-for="(m,index) in menu.children">
 
-                    <i-menu-item v-if="(!m.children)&&m.visible" @click="onRouteTo(m.path)" :key="m.name" :name="m.name" :to="m.path">
-                        <router-link  :to="m.path">
-                           {{m.title}}
+                    <i-menu-item v-if="(!m.children)&&m.visible" @click="onRouteTo(m.path)" :key="m.name" :name="m.name"
+                        :to="m.path">
+                        <router-link :to="m.path">
+                            {{m.title}}
                         </router-link>
                     </i-menu-item>
 
@@ -14,9 +15,10 @@
                         <template slot="title">
                             <i-icon :type="m.icon" /><span>{{m.title}}</span>
                         </template>
-                        <i-menu-item @click="onRouteTo(item.path)" :key="item.name" :name="item.name" v-for="(item) in m.children">
+                        <i-menu-item @click="onRouteTo(item.path)" :key="item.name" :name="item.name"
+                            v-for="(item) in m.children">
                             <router-link :to="item.path">
-                              {{item.title}}
+                                {{item.title}}
                             </router-link>
 
                         </i-menu-item>
@@ -24,18 +26,40 @@
 
                 </template>
 
-
             </i-menu>
-        </i-sider>
-        <i-layout>
+        </i-col>
+        <i-col :span="spanRight">
+            <div class="layout-header">
+                <i-button type="text" @click="toggleClick">
+                    <Icon type="navicon" size="32"></Icon>
+                </i-button>
+            </div>
+            <div class="layout-breadcrumb">
+                <Breadcrumb>
+                    <Breadcrumb-item href="#">首页</Breadcrumb-item>
+                    <Breadcrumb-item href="#">应用中心</Breadcrumb-item>
+                    <Breadcrumb-item>某应用</Breadcrumb-item>
+                </Breadcrumb>
+            </div>
+            <div class="layout-content">
+                <div class="layout-content-main">
+                    <router-view></router-view>
+                </div>
+            </div>
+            <div class="layout-copy">
+                2011-2016 &copy; TalkingData
+            </div>
+        </i-col>
+
+        <!-- <i-layout>
             <i-header class="layout-header-bar">
-                <i-icon @click.native="collapsedSider" :style="{margin: '20px 20px 0'}" type="navicon-round"  :class="rotateIcon"  size="24"></i-icon>
+                <i-icon @click.native="collapsedSider" type="logo-buffer"  :class="rotateIcon"  size="24"></i-icon>
             </i-header>
             <i-content>
                 <div class="layout-content">
                     <router-view></router-view>
                 </div>
             </i-content>
-        </i-layout>
-    </i-layout>
+        </i-layout> -->
+    </i-row>
 </div>

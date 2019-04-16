@@ -1,0 +1,58 @@
+.rune {
+    display: grid;
+    height: 100%;
+    grid-template-columns: repeat(2, 1fr);
+    .editor {
+        margin-left: 18px;
+        margin-right: 18px;
+        //width: 100%;
+        height: 460px;
+    }
+    .result {
+        position: relative;
+        padding: 0px;
+        background: gainsboro;
+        &-title {
+            background: gainsboro;
+            padding: 13px;
+            font-size: 16px;
+            font-weight: 700;
+            position: absolute;
+            right: 0;
+            left: 0;
+        }
+        &-content {
+            background: white;
+            position: absolute;
+            top: 53px;
+            bottom: 20px;
+            left: 0px;
+            right: 20px;
+            padding: 6px;
+        }
+    }
+    .ivu-tabs {
+        background: gainsboro;
+        .ivu-tabs-content {
+            padding-bottom: 20px;
+        }
+    }
+    .btn-run {
+        margin: 10px;
+    }
+    // pre{
+    //     padding:3px;
+    //     .editor {
+    //         margin-left: 18px;
+    //         margin-right: 18px;
+    //         //width: 100%;
+    //         height: 460px;
+    //       }
+    //       iframe{
+    //           border: 0px;
+    //           padding: 18px;
+    //           height: 100%;
+    //           width: 100%;
+    //       }
+    // }
+}

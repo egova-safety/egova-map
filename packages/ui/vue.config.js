@@ -48,7 +48,7 @@ module.exports = {
         config.resolve.alias
             .set('@', path.join(__dirname, 'src'))
 
- 
+
         // config.plugin('webpack-report')
         //     .use(BundleAnalyzerPlugin, [{
         //         analyzerMode: 'static',
@@ -60,9 +60,17 @@ module.exports = {
     configureWebpack: config => {
 
         // console.log(config.entry);
-        config.output.libraryExport= 'default';
+        //config.output.libraryExport= 'default';
 
-        config.entry.vendors= ["vue", "esri-loader", "@egova/map-base", "@egova/map-arcgis", "@egova/map-minemap"];
+        //config.entry.vendors= ["vue", "esri-loader", "@egova/map-base", "@egova/map-arcgis", "@egova/map-minemap"];
+
+        config.externals= {
+            "vue":"vue",
+            "esri-loader": "esri-loader",
+            "@egova/map-base": "@egova/map-base",
+            "@egova/map-arcgis": "@egova/map-arcgis",
+            "@egova/map-minemap": "@egova/map-minemap"
+        }
     },
     css: {
         // 启用 CSS modules
@@ -94,7 +102,7 @@ module.exports = {
         host: "0.0.0.0",
         port: 8000, // 端口号
         https: false, // https:{type:Boolean}
-        open: true, //配置自动启动浏览器  http://172.16.1.12:7071/rest/mcdPhoneBar/ 
+        open: true, //配置自动启动浏览器  http://172.16.1.12:7071/rest/mcdPhoneBar/
         hotOnly: true, // 热更新
         // proxy: 'http://localhost:8000'   // 配置跨域处理,只有一个代理
     },

@@ -44,7 +44,7 @@ export default class HeatmapLayerComponent extends ComponentBase {
      */
     @config({ type: Array })
     public colorStops: Array<any> | undefined;
-    
+
     /**
      * 数据源
      */
@@ -138,8 +138,8 @@ export default class HeatmapLayerComponent extends ComponentBase {
 
         this.$emit("on-build", this._mapComponent);
 
-        this.$children.forEach(child => {
-            child.$emit("layer-ready", this._mapComponent);
+        this.childrenComponents.forEach(vnode => {
+            vnode.$emit("layer-ready", this._mapComponent);
         });
 
         if (this.source && this.source.length > 0) {

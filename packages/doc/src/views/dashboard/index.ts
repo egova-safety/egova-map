@@ -9,7 +9,14 @@ export default class Dashboard extends View {
         visible: false
     };
 
+    protected spanLeft: number = 5;
+    protected spanRight: number = 19;
+
     protected isCollapsed: boolean = false;
+
+    protected iconSize() {
+        return this.spanLeft === 5 ? 14 : 24;
+    }
 
     protected rotateIcon() {
         return ["menu-icon", this.isCollapsed ? "rotate-icon" : ""];
@@ -18,6 +25,15 @@ export default class Dashboard extends View {
         return ["menu-item", this.isCollapsed ? "collapsed-menu" : ""];
     }
 
+    protected toggleClick() {
+        if (this.spanLeft === 5) {
+            this.spanLeft = 2;
+            this.spanRight = 22;
+        } else {
+            this.spanLeft = 5;
+            this.spanRight = 19;
+        }
+    }
     /**
      * 获取需要展示的菜单列表。
      * @protected

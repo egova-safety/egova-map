@@ -3,7 +3,8 @@ const webpack = require("webpack");
 const CompressionPlugin = require('compression-webpack-plugin'); //Gzip
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin; //Webpack包文件分析器
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MonocoEditorPlugin = require('monaco-editor-webpack-plugin');
 
 module.exports = {
     //基本路径
@@ -47,8 +48,8 @@ module.exports = {
 
         config.resolve.alias
             .set('@s', path.join(__dirname, 'src'))
-            .set('@egova/map-ui', path.join(__dirname, '../ui/src'))
-            .set('@', path.join(__dirname, '../ui/src'))
+            //.set('@egova/map-ui', path.join(__dirname, '../ui/src'))
+            //.set('@', path.join(__dirname, '../ui/src'))
 
         // 修改插件配置
         config.plugin('html').tap(args => {
@@ -70,9 +71,10 @@ module.exports = {
     configureWebpack: config => {
 
         //console.log(config.resolveLoader.modulesDirectories);
-        config.entry.vendors= ["vue", "vue-router", "flagwind-core", "@egova/flagwind-web", "iview"];
-      
-
+        // config.entry.vendors= ["vue", "vue-router", "flagwind-core", "@egova/flagwind-web", "iview"];
+        config.plugins.push(new MonocoEditorPlugin());
+        config.node.process=true;
+        config.resolve.symlinks= false
         // config.resolveLoader= {
         //     modules: [
         //       path.resolve(__dirname, 'node_modules'),
@@ -110,7 +112,7 @@ module.exports = {
         host: "0.0.0.0",
         port: 8000, // 端口号
         https: false, // https:{type:Boolean}
-        open: true, //配置自动启动浏览器  http://172.16.1.12:7071/rest/mcdPhoneBar/ 
+        open: true, //配置自动启动浏览器  http://172.16.1.12:7071/rest/mcdPhoneBar/
         hotOnly: true, // 热更新
         // proxy: 'http://localhost:8000'   // 配置跨域处理,只有一个代理
     },

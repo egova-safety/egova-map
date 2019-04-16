@@ -16,10 +16,12 @@ import components from "@egova/flagwind-web";
 
 // 导入应用组件
 import Code from "../components/code";
+import CodeEditor from "../components/code-editor";
 import Example from "../components/example";
 import mapUI from "@egova/map-ui";
 
 // 倒入全局样式
+import "@egova/map-ui/dist/egova-map-ui.css";
 import "iview/dist/styles/iview.css";
 import "@egova/flagwind-web/dist/styles/flagwind.css";
 import "../assets/styles/index.scss";
@@ -102,8 +104,10 @@ export default class Workbench extends WorkbenchBase {
      * @returns void
      */
     private initializeComponent(context: ApplicationContext): void {
-   
+
         // 注册应用组件
+        Vue.component("u-code-editor",CodeEditor);
+
         Vue.component("u-code", Code);
 
         Vue.component("u-example", Example);
@@ -111,7 +115,7 @@ export default class Workbench extends WorkbenchBase {
         // 注册布局母版
         // Vue.component("l-generic", Generic);
         // 注册系统组件
-        console.log(mapUI);
+
         Vue.use(components.install);
         Vue.use(mapUI.install);
     }

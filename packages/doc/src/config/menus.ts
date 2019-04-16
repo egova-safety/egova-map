@@ -1,9 +1,9 @@
 /*!
  * Authors:
  *      jason <jasonsoop@gmail.com>
- * 
+ *
  * Licensed under the MIT License.
- * Copyright (C) 2010-present Flagwind Inc. All rights reserved. 
+ * Copyright (C) 2010-present Flagwind Inc. All rights reserved.
  */
 
 const menus = [
@@ -19,24 +19,30 @@ const menus = [
                 title: "地图",
                 path: "/map",
                 visible: true,
-                icon: "earth",
+                icon: "md-globe",
                 children: [
                     {
                         name: "map",
                         title: "地图",
                         path: "/map",
                         visible: true,
-                        icon: "earth"
+                        icon: "md-globe"
+                    },
+                    {
+                        name: "test",
+                        title: "测试",
+                        path: "/test",
+                        visible: true,
+                        icon: "md-globe"
                     }
                 ]
             },
-
             {
                 name: "layers",
                 title: "图层",
                 path: "/point-layer",
                 visible: true,
-                icon: "map",
+                icon: "md-albums",
                 children: [
                     {
                         name: "pointLayer",
@@ -74,7 +80,7 @@ const menus = [
                 name: "widgets",
                 title: "插件",
                 path: "/select-box",
-                icon: "gear-a",
+                icon: "md-cube",
                 visible: true,
                 children: [
                     {
