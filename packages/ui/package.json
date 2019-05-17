@@ -1,6 +1,6 @@
 {
     "name": "@egova/map-ui",
-    "version": "1.0.11",
+    "version": "1.0.12",
     "types": "dist/types/index.d.ts",
     "main": "dist/egova-map-ui.umd.js",
     "publishConfig": {
@@ -32,13 +32,13 @@
         "vue-property-decorator": "^7.3.0"
     },
     "optionalDependencies": {
-        "@egova/map-arcgis": "^1.0.10",
-        "@egova/map-minemap": "^1.0.9"
+        "@egova/map-arcgis": "^1.0.12",
+        "@egova/map-minemap": "^1.0.12"
     },
     "devDependencies": {
         "@egova/flagwind-web": "^1.0.19",
         "@egova/map-arcgis": "^1.0.8",
-        "@egova/map-base": "^1.0.9",
+        "@egova/map-base": "^1.0.12",
         "@egova/map-minemap": "^1.0.8",
         "@types/clipboard": "^2.0.1",
         "@types/highlight.js": "^9.12.3",

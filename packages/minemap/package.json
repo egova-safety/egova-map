@@ -3,7 +3,7 @@
   "types": "dist/types/index.d.ts",
   "main": "dist/egova-map-minemap.umd.js",
   "module": "dist/egova-map-minemap.es5.js",
-  "version": "1.0.9",
+  "version": "1.0.12",
   "publishConfig": {
     "access": "public"
   },
@@ -20,7 +20,7 @@
     "@turf/turf": "^5.1.6"
   },
   "devDependencies": {
-    "@egova/map-base": "^1.0.9",
+    "@egova/map-base": "^1.0.12",
     "monaco-editor-webpack-plugin": "^1.7.0",
     "rollup": "^1.6.0",
     "rollup-plugin-commonjs": "^9.2.1",
@@ -36,7 +36,7 @@
   },
   "gitHead": "807096ac7aa8f77a21ccfb1346fccae590c63687",
   "dependencies": {
-    "@egova/map-ui": "^1.0.11",
+    "@egova/map-ui": "^1.0.12",
     "vue-monaco": "^0.3.1"
   }
 }
