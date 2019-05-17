@@ -5,6 +5,16 @@ import * as codes from "@s/codes";
 export default class PointLayerView extends View {
     protected code: object = codes.layers;
 
+    // protected created() {
+    //     let list: Array<any> = [];
+    //     for (let i = 0; i < 10000; i++) {
+    //         list.push({
+    //             id: i.toString(), name: "张三" + i, longitude: 118.5731 + Math.random() * 0.01 + (i % 10) / 1000, latitude: 37.61462 + Math.random() * 0.01 + Math.random() * 0.001
+    //         });
+    //     }
+    //     this.dataList = list;
+    // }
+
     protected dataList = [
         { id: "1", name: "张三", longitude: 118.5731, latitude: 37.61462 },
         { id: "2", name: "李娜", longitude: 118.1332, latitude: 37.48463 },

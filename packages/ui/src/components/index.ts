@@ -7,6 +7,7 @@ import PolylineLayer from "@/components/layers/polyline-layer";
 import EditLayer from "@/components/layers/edit-layer";
 import TrackLayer from "@/components/layers/track-layer";
 import HeatmapLayer from "@/components/layers/heatmap-layer";
+import CanvasLayer from "@/components/layers/canvas-layer";
 
 import {
     SelectBoxComponent,
@@ -23,6 +24,7 @@ const components: any = {
     "fm-edit-layer": EditLayer,
     "fm-track-layer": TrackLayer,
     "fm-heatmap-layer": HeatmapLayer,
+    "fm-canvas-layer": CanvasLayer,
     "fm-select-box": SelectBoxComponent,
     "fm-context-menu": ContextMenuComponent,
     "fm-info-window": InfoWindowComponent,
@@ -54,6 +56,7 @@ export {
     PolylineLayer,
     EditLayer,
     TrackLayer,
+    CanvasLayer,
     HeatmapLayer,
     SelectBoxComponent,
     ContextMenuComponent,
@@ -68,6 +71,7 @@ export default {
     PolylineLayer,
     EditLayer,
     TrackLayer,
+    CanvasLayer,
     HeatmapLayer,
     SelectBoxComponent,
     ContextMenuComponent,

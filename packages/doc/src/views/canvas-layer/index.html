@@ -1,0 +1,88 @@
+<div class="v-intro">
+    <h1>Canvas Layer</h1>
+    <h2>一、概述</h2>
+    <p>Heatmap Layer 是一个热力图组件，对应 flagwind map 的 FlagwindHeatmapLayer 类，通过对数据点进行汇聚操作，从而展示不同区域的热力分布情况。</p>
+
+    <h2>二、示例</h2>
+    <u-example title="说明">
+        <template slot="case">
+            <fm-map ref="fwAmap"  vid="esri_map">
+                <fm-canvas-layer vid="canvasLayer" :source="dataList" @changeStandardModel="onChangeStandardModel">
+                </fm-canvas-layer>
+            </fm-map>
+        </template>
+        <template slot="desc">
+            <p>热力图层是Map的子组件，须放置在Map组件下面。</p>
+
+        </template>
+        <u-code slot="code" lang="html">{{code.heatmap}}</u-code>
+    </u-example>
+    <div class="api">
+        <h2>API</h2>
+        <h3>属性</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>名称</th>
+                    <th>说明</th>
+                    <th>数据类型</th>
+                    <th>属性类型</th>
+                    <th>默认值</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>options</td>
+                    <td>地层参数</td>
+                    <td>any</td>
+                    <td>静态属性</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>blurRadius</td>
+                    <td>地图参数</td>
+                    <td>number</td>
+                    <td>静态属性</td>
+                    <td>12</td>
+                </tr>
+                <tr>
+                    <td>colorStops</td>
+                    <td>热力颜色设置</td>
+                    <td>Array</td>
+                    <td>静态属性</td>
+                    <td>[<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;{ ratio: 0, color: "rgb(255, 219, 0, 0)" },<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;{ ratio: 0.6, color: "rgb(250, 146, 0)" },<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;{ ratio: 0.85, color: "rgb(250, 73, 0)" },<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;{ ratio: 0.95, color: "rgba(250, 0, 0)" }<br />
+                        ]</td>
+                </tr>
+            </tbody>
+
+        </table>
+
+        <h3>事件</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>事件名</th>
+                    <th>说明</th>
+                    <th>参数</th>
+                </tr>
+            </thead>
+            <tbody>
+                    <tr>
+                            <td>on-build</td>
+                            <td>组件构建完成回调。</td>
+                            <td>(layer:IFlagwindHeatmapLayer)</td>
+                        </tr>
+                <tr>
+                    <td>changeStandardModel</td>
+                    <td>标准化热力图实体,返回结果如下：{ longitude: number, latitude: number, count?:number }</td>
+                    <td>(data: any)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

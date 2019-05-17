@@ -10,6 +10,9 @@ export class HeatmapLayer implements base.IHeatmapLayer {
 
     public get echartslayer(): any {
         if (this._echartslayer == null) {
+            if (!minemap.Template) {
+                console.error("template 插件未加载或加载失败");
+            }
             this._echartslayer = minemap.Template.create({
                 map: this.mapView.map,
                 type: "heatmap"
@@ -113,6 +116,6 @@ export class HeatmapLayer implements base.IHeatmapLayer {
                 }
             }
         });
-        return this.dataMap.values();
+        return this.dataMap.values().map(g => [g.longitude, g.latitude, g.count]);
     }
 }

@@ -22,17 +22,17 @@ mapUI.setting.arcgis = {
 mapUI.setting.minemap = {
     ...mapUI.setting.minemap,
     ...{
-        mapDomain: "113.106.54.47:1180", // 四维图新api地址信息，云南现网使用IP "10.166.190.228"
-        mapVersion: "v1.3",
-        accessToken: "658e22d73c60405a8a7c82f69f298c2b", // 四维图新api的访问凭证，  现网使用"6ed83a09b32547bb975102422a453d6c"
-        wkid: 3591, // 四维图新使用的坐标系，现网使用3589
+    //    mapDomain: "113.106.54.47:1180", // 四维图新api地址信息，云南现网使用IP "10.166.190.228"
+    //    mapVersion: "v1.3",
+        accessToken: "25cc55a69ea7422182d00d6b7c0ffa93", // 四维图新api的访问凭证，  现网使用"6ed83a09b32547bb975102422a453d6c"
+        wkid: 2365, // 四维图新使用的坐标系，现网使用3589
         center: [118.573, 37.446], // 地图中心点（*****需要根据本地州修改配置*****）
         zoom: 6, // 地图放大级别
         minZoom: 3
     }
 };
-(<any>mapUI.setting.minemap).mainJS = "http://113.106.54.47:1180/minemapapi/demo/js/minemap-wmts.js";
-mapUI.setting.mapType = (<any>window).mapType || "arcgis";
+// (<any>mapUI.setting.minemap).mainJS = "http://113.106.54.47:1180/minemapapi/demo/js/minemap-wmts.js";
+mapUI.setting.mapType = "minemap";// (<any>window).mapType || "arcgis";
 
 mapUI.MapLoader.loadCss(mapUI.setting);
 mapUI.MapLoader.loadScript(mapUI.setting).then(() => {

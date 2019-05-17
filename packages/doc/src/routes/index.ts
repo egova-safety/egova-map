@@ -43,6 +43,10 @@ const routes = [
                 component: () => import("@s/views/heatmap-layer")
             },
             {
+                path: "/canvas-layer",
+                component: () => import("@s/views/canvas-layer")
+            },
+            {
                 path: "/info-window",
                 component: () => import("@s/views/info-window")
             },

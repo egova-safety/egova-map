@@ -68,6 +68,13 @@ const menus = [
                         icon: "pie-graph"
                     },
                     {
+                        name: "canvasLayer",
+                        title: "画板图层",
+                        path: "/canvas-layer",
+                        visible: true,
+                        icon: "pie-graph"
+                    },
+                    {
                         name: "trackLayer",
                         title: "轨迹",
                         path: "/track-layer",

@@ -17,8 +17,8 @@ const EXCULDE_NAMES = ["vid", "source", "options"];
  * @class
  * @version 1.0.0
  */
-@component({ template: require("./heatmap-layer.html") })
-export default class HeatmapLayerComponent extends ComponentBase {
+@component({ template: require("./canvas-layer.html") })
+export default class CanvasLayerComponent extends ComponentBase {
 
     /**
      * 获取或设置图层ID。
@@ -33,17 +33,8 @@ export default class HeatmapLayerComponent extends ComponentBase {
     @config({ type: Object })
     public options: any;
 
-    /**
-     * 模糊半径
-     */
-    @config({ type: Number, default: 12 })
-    public blurRadius: number;
-
-    /**
-     * 颜色
-     */
-    @config({ type: Array })
-    public colorStops: Array<any> | undefined;
+    @config({ type: String, default: "point" })
+    public type!: "point" | "polyline" | "polygon";
 
     /**
      * 数据源
@@ -51,11 +42,11 @@ export default class HeatmapLayerComponent extends ComponentBase {
     @config({ type: Array })
     public source!: Array<object>;
 
-    public get mapComponent(): base.IHeatmapLayer {
+    public get mapComponent(): base.ICanvasLayer {
         return this._mapComponent;
     }
 
-    public set mapComponent(value: base.IHeatmapLayer) {
+    public set mapComponent(value: base.ICanvasLayer) {
         this._mapComponent = value;
     }
 
@@ -127,9 +118,9 @@ export default class HeatmapLayerComponent extends ComponentBase {
 
         options = { ...this.options, ...options };
 
-        let serviceType = this.getMapClassType("HeatmapLayer");
+        let serviceType = this.getMapClassType("CanvasLayer");
 
-        this._mapComponent = this.getService<base.IHeatmapLayer>(
+        this._mapComponent = this.getService<base.ICanvasLayer>(
             serviceType,
             this.map,
             this.vid,
@@ -143,14 +134,16 @@ export default class HeatmapLayerComponent extends ComponentBase {
         });
 
         if (this.source && this.source.length > 0) {
-            if (this.map.loaded) {
-                this._mapComponent.clear();
-                this._mapComponent.showDataList(this.source, false);
-            } else {
-                this.map.on("onLoad", () => {
+            if (this.source && this.source.length > 0) {
+                if (this.map.loaded) {
                     this._mapComponent.clear();
                     this._mapComponent.showDataList(this.source, false);
-                });
+                } else {
+                    this.map.on("onLoad", () => {
+                        this._mapComponent.clear();
+                        this._mapComponent.showDataList(this.source, false);
+                    });
+                }
             }
         }
     }

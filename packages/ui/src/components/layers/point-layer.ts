@@ -206,7 +206,11 @@ export default class PointLayerComponent extends ComponentBase {
 
         options = { ...this.options, ...options };
 
-        let serviceType = this.getMapClassType("ClusterLayer");
+        let serviceType = this.getMapClassType("PointLayer");
+
+        if (this.getMapType() === "arcgis") {
+            serviceType = this.getMapClassType("ClusterLayer");
+        }
 
         this._mapComponent = this.getService<base.BusinessLayer>(
             serviceType,

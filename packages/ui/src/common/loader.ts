@@ -14,12 +14,12 @@ export default class MapLoader {
         } else if (setting.mapType === "minemap") {
             loadCss(
                 `http://${setting.minemap.mapDomain}/minemapapi/${
-                    setting.minemap.mapVersion
+                setting.minemap.mapVersion
                 }/minemap.css`
             );
             loadCss(
                 `http://${setting.minemap.mapDomain}/minemapapi/${
-                    setting.minemap.mapVersion
+                setting.minemap.mapVersion
                 }/plugins/edit/minemap-edit.css`
             );
         }
@@ -62,19 +62,17 @@ export default class MapLoader {
         return loadScript(options);
     }
 
-    public static loadMinemapScript(setting: any) {
+    public static createScript(name: string, jsUrl: string) {
         return new Promise((resolve, reject) => {
-            let script = document.querySelector("script[data-minemap-loader]");
+            let script: HTMLScriptElement = document.querySelector(`script[${name}]`);
 
             if (!script) {
-                let url =
-                    setting.minemap.mainJS ||
-                    `http://${setting.minemap.mapDomain}/minemapapi/${
-                        setting.minemap.mapVersion
-                    }/minemap.js`;
-                script = MapLoader.createScript(url);
+                let script = document.createElement("script");
+                script.type = "text/javascript";
+                script.src = jsUrl;
+
                 let onScriptLoad = () => {
-                    script!.setAttribute("data-minemap-loader", "loaded");
+                    script!.setAttribute(name, "loaded");
                     // remove this event listener
                     script!.removeEventListener("load", onScriptLoad, false);
                     resolve(script!);
@@ -85,46 +83,104 @@ export default class MapLoader {
             } else {
                 resolve(script);
             }
-
-            let pluginScript = document.querySelector(
-                "script[data-minemap-plugin-loader]"
-            );
-            if (!pluginScript) {
-                let url =
-                    setting.minemap.pluginJS ||
-                    `http://${setting.minemap.mapDomain}/minemapapi/${
-                        setting.minemap.mapVersion
-                    }/plugins/edit/minemap-edit.js`;
-                pluginScript = MapLoader.createScript(url);
-                let onScriptLoad = () => {
-                    pluginScript!.setAttribute(
-                        "data-minemap-plugin-loader",
-                        "loaded"
-                    );
-
-                    pluginScript!.removeEventListener(
-                        "load",
-                        onScriptLoad,
-                        false
-                    );
-                };
-                pluginScript.addEventListener("load", onScriptLoad, false);
-
-                document.body.appendChild(pluginScript);
-                pluginScript.setAttribute(
-                    "data-minemap-plugin-loader",
-                    "loading"
-                );
-            }
         });
     }
 
-    public static createScript(url: string) {
-        let script = document.createElement("script");
-        script.type = "text/javascript";
-        script.src = url;
-        return script;
+    public static loadMinemapScript(setting: any) {
+        return new Promise((resolve, reject) => {
+            let url =
+                setting.minemap.mainJS ||
+                `http://${setting.minemap.mapDomain}/minemapapi/${
+                setting.minemap.mapVersion
+                }/minemap.js`;
+
+            let editJSUrl = setting.minemap.pluginEditJS ||
+                `http://${setting.minemap.mapDomain}/minemapapi/${
+                setting.minemap.mapVersion
+                }/plugins/edit/minemap-edit.js`;
+
+            let templateJSUrl = setting.minemap.pluginTemplateJS ||
+                `http://${setting.minemap.mapDomain}/minemapapi/${
+                setting.minemap.mapVersion
+                }/plugins/template/template.js`;
+
+            MapLoader.createScript("data-minemap-loader", url).then(script => {
+                Promise.all([
+                    MapLoader.createScript("data-minemap-edit-loader", editJSUrl),
+                    MapLoader.createScript("data-minemap-template-loader", templateJSUrl),
+                ]).then(() => {
+                    resolve(script);
+                }).catch(err => {
+                    reject(err);
+                });
+            });
+
+            let echartsJSUrl = setting.minemap.pluginEchartsJS ||
+                `http://${setting.minemap.mapDomain}/minemapapi/demo/js/echarts-all-3.js`;
+
+            MapLoader.createScript("data-minemap-echarts-loader", echartsJSUrl);
+
+            // let script = document.querySelector("script[data-minemap-loader]");
+
+            // if (!script) {
+            //     let url =
+            //         setting.minemap.mainJS ||
+            //         `http://${setting.minemap.mapDomain}/minemapapi/${
+            //         setting.minemap.mapVersion
+            //         }/minemap.js`;
+            //     script = MapLoader.createScript(url);
+            //     let onScriptLoad = () => {
+            //         script!.setAttribute("data-minemap-loader", "loaded");
+            //         // remove this event listener
+            //         script!.removeEventListener("load", onScriptLoad, false);
+            //         resolve(script!);
+            //     };
+            //     script.addEventListener("load", onScriptLoad, false);
+            //     document.body.appendChild(script);
+            //     script.setAttribute("data-minemap-loader", "loading");
+            // } else {
+            //     resolve(script);
+            // }
+
+            // let pluginScript = document.querySelector(
+            //     "script[data-minemap-plugin-loader]"
+            // );
+            // if (!pluginScript) {
+            //     let url =
+            //         setting.minemap.pluginJS ||
+            //         `http://${setting.minemap.mapDomain}/minemapapi/${
+            //         setting.minemap.mapVersion
+            //         }/plugins/edit/minemap-edit.js`;
+            //     pluginScript = MapLoader.createScript(url);
+            //     let onScriptLoad = () => {
+            //         pluginScript!.setAttribute(
+            //             "data-minemap-plugin-loader",
+            //             "loaded"
+            //         );
+
+            //         pluginScript!.removeEventListener(
+            //             "load",
+            //             onScriptLoad,
+            //             false
+            //         );
+            //     };
+            //     pluginScript.addEventListener("load", onScriptLoad, false);
+
+            //     document.body.appendChild(pluginScript);
+            //     pluginScript.setAttribute(
+            //         "data-minemap-plugin-loader",
+            //         "loading"
+            //     );
+            // }
+        });
     }
+
+    // public static createScript(url: string) {
+    //     let script = document.createElement("script");
+    //     script.type = "text/javascript";
+    //     script.src = url;
+    //     return script;
+    // }
 
     public static loadModules(mapType: String): Promise<any> {
         if (mapType === "arcgis") {
@@ -138,6 +194,8 @@ export default class MapLoader {
 
     public static loadMinemapModules(): Promise<any> {
         return new Promise((resolve, reject) => {
+            // plugins/template/template.js
+
             console.info("minemap 不需要调用此方法");
             resolve();
         });

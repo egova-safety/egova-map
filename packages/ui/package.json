@@ -36,7 +36,7 @@
         "@egova/map-minemap": "^1.0.9"
     },
     "devDependencies": {
-        "@egova/flagwind-web": "^1.0.14",
+        "@egova/flagwind-web": "^1.0.19",
         "@egova/map-arcgis": "^1.0.8",
         "@egova/map-base": "^1.0.9",
         "@egova/map-minemap": "^1.0.8",
