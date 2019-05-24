@@ -124,26 +124,32 @@ export class GeojsonLayer extends base.GeojsonLayer {
         });
     }
 
-    public showDataList(data: Array<any>): void {
-        this.items = (data || []).map(g => this.onChangeStandardModel(g));
-        if (this.geometrys.length <= 0) {
-            this.clear();
-            return;
-        }
-        this.loadImages().then(() => {
-            this.mapView.innerMap.addSource(this.id + "_source", {
-                "type": "geojson",
-                "data": {
-                    "type": "FeatureCollection",
-                    "features": this.geometrys.map(g => g.toJson())
-                }
-            });
-            this.mapView.innerMap.addLayer({
-                "id": this.id,
-                "type": "symbol",
-                "source": this.id + "_source",
-                ...this.options.symbol
-            });
+    public showDataList(data: Array<any>): Promise<void> {
+        return new Promise((resolve, reject) => {
+            this.items = (data || []).map(g => this.onChangeStandardModel(g));
+            if (this.geometrys.length <= 0) {
+                this.clear();
+                resolve();
+                return;
+            }
+            this.loadImages().then(() => {
+                this.mapView.innerMap.addSource(this.id + "_source", {
+                    "type": "geojson",
+                    "data": {
+                        "type": "FeatureCollection",
+                        "features": this.geometrys.map(g => g.toJson())
+                    }
+                });
+                this.mapView.innerMap.addLayer({
+                    "id": this.id,
+                    "type": "symbol",
+                    "source": this.id + "_source",
+                    ...this.options.symbol
+                });
+                resolve();
+            }).catch(err=>{
+                reject(err)
+            })
         })
     }
 

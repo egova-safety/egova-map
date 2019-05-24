@@ -115,15 +115,15 @@ module.exports = {
         open: true, //配置自动启动浏览器  http://172.16.1.12:7071/rest/mcdPhoneBar/
         hotOnly: true, // 热更新
         // proxy: 'http://localhost:8000'   // 配置跨域处理,只有一个代理
-    },
+    }
 
     // 第三方插件配置 https://www.npmjs.com/package/vue-cli-plugin-style-resources-loader
-    pluginOptions: {
-        'style-resources-loader': {
-            preProcessor: 'scss',
-            patterns: [
-                path.resolve(__dirname, './src/assets/styles/index.scss')
-            ]
-        }
-    }
+    // pluginOptions: {
+    //     'style-resources-loader': {
+    //         preProcessor: 'scss',
+    //         patterns: [
+    //             path.resolve(__dirname, './src/assets/styles/index.scss')
+    //         ]
+    //     }
+    // }
 };

@@ -37,4 +37,4 @@ export default {
     css,
     code,
     theme
-}
+};
