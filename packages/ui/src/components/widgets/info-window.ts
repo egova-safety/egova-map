@@ -42,14 +42,7 @@ export default class InfoWindowComponent extends ComponentBase {
         return this.title !== undefined && this.title.length > 0;
     }
 
-    public get mapComponent(): base.MapView {
-        return this._mapComponent;
-    }
-
-    public set mapComponent(value: base.MapView) {
-        this._mapComponent = value;
-    }
-
+    public mapComponent: base.MapView | base.BusinessLayer;
     public constructor() {
         super(EVENTS);
     }
@@ -232,7 +225,7 @@ export default class InfoWindowComponent extends ComponentBase {
 
         this.map = map;
 
-        this._mapComponent = map;
+        this.mapComponent = map;
 
         if (this.point) {
             this._point = this.map.getPoint(this.point);
@@ -248,7 +241,7 @@ export default class InfoWindowComponent extends ComponentBase {
 
         this.map = layer.mapView;
 
-        this._mapComponent = layer;
+        this.mapComponent = layer;
 
         this.registerEvent();
 
@@ -262,59 +255,34 @@ export default class InfoWindowComponent extends ComponentBase {
         let infoWindowLeft: number;
 
         let isArcgis: boolean = this.map.options.mapType === "arcgis";
-        this.map.on(
-            "onZoomStart",
-            () => {
-                this.zooming = true;
-                if (!this._point) return;
-            },
-            this
-        );
+        this.map.on("onZoomStart", () => {
+            this.zooming = true;
+            if (!this._point) return;
+        }, this);
 
-        this.map.on(
-            "onZoomEnd",
-            () => {
-                this.zooming = false;
-                if (!this._point) return;
-                this.onPointChanged(this._point);
-            },
-            this
-        );
+        this.map.on("onZoomEnd", () => {
+            this.zooming = false;
+            if (!this._point) return;
+            this.onPointChanged(this._point);
+        }, this);
 
-        this.map.on(
-            "onPanStart",
-            () => {
-                if (!this._point) return;
-                infoWindowTop = infoWindow.offsetTop;
-                infoWindowLeft = infoWindow.offsetLeft;
-            },
-            this
-        );
+        this.map.on("onPanStart", () => {
+            if (!this._point) return;
+            infoWindowTop = infoWindow.offsetTop;
+            infoWindowLeft = infoWindow.offsetLeft;
+        }, this);
 
-        this.map.on(
-            "onPan",
+        this.map.on("onPan",
             (evt: base.EventArgs) => {
                 if (!this._point) return;
                 if (!isArcgis && !evt.data.originalEvent) return;
-                infoWindow.style.top = `${infoWindowTop +
-                    (isArcgis
-                        ? evt.data.delta.y
-                        : evt.data.originalEvent.y)}px`;
-                infoWindow.style.left = `${infoWindowLeft +
-                    (isArcgis
-                        ? evt.data.delta.x
-                        : evt.data.originalEvent.x)}px`;
-            },
-            this
-        );
+                infoWindow.style.top = `${infoWindowTop + (isArcgis ? evt.data.delta.y : evt.data.originalEvent.y)}px`;
+                infoWindow.style.left = `${infoWindowLeft + (isArcgis ? evt.data.delta.x : evt.data.originalEvent.x)}px`;
+            }, this);
 
-        this.map.on(
-            "onPanEnd",
-            () => {
-                if (!this._point) return;
-                this.onPointChanged(this._point);
-            },
-            this
-        );
+        this.map.on("onPanEnd", () => {
+            if (!this._point) return;
+            this.onPointChanged(this._point);
+        }, this);
     }
 }

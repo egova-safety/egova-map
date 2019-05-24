@@ -18,7 +18,7 @@ const EXCULDE_NAMES = ["map","options"];
  * @version 1.0.0
  */
 @component({ template: require("./track-layer.html") })
-export default class TrackLayerComponent extends ComponentBase {
+export class TrackLayerComponent extends ComponentBase {
 
     @config({ type: Object })
     public options: any;
@@ -35,13 +35,7 @@ export default class TrackLayerComponent extends ComponentBase {
     @config({ type: String ,default: "Line" })
     public solveMode: string ;
 
-    public get mapComponent(): base.TrackLayer {
-        return this._mapComponent;
-    }
-
-    public set mapComponent(value: base.TrackLayer) {
-        this._mapComponent = value;
-    }
+    public mapComponent: base.TrackLayer ;
 
     public constructor() {
         super(EVENTS);
@@ -108,12 +102,12 @@ export default class TrackLayerComponent extends ComponentBase {
 
         let layer = this.childrenComponents[0].mapComponent;
 
-        this._mapComponent = this.getService<base.TrackLayer>(
+        this.mapComponent = this.getService<base.TrackLayer>(
             serviceType,
             layer,
             options
         );
-        this.$emit("on-build", this._mapComponent);
+        this.$emit("on-build", this.mapComponent);
 
         if (!options["getImageUrl"]) {
             console.warn("getImageUrl未设置，移动目标可能无法显示");

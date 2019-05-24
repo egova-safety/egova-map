@@ -17,18 +17,12 @@ const EXCULDE_NAMES = ["options"];
  * @version 1.0.0
  */
 @component({ template: require("./edit-layer.html") })
-export default class EditLayerComponent extends ComponentBase {
+export class EditLayerComponent extends ComponentBase {
 
     @config({ type: Object })
     public options: any;
 
-    public get mapComponent(): base.IEditLayer {
-        return this._mapComponent;
-    }
-
-    public set mapComponent(value: base.IEditLayer) {
-        this._mapComponent = value;
-    }
+    public mapComponent: base.IEditLayer;
 
     public constructor() {
         super(EVENTS);
@@ -81,14 +75,6 @@ export default class EditLayerComponent extends ComponentBase {
 
         let serviceType = this.getMapClassType("EditLayer");
 
-        // if (this.$children.length === 0) {
-        //     throw new Error("未添加待编辑的图层");
-        // }
-
-        // this.$children.forEach(child => {
-        //     child.$emit("map-ready", this.map);
-        // });
-
         if (this.childrenComponents.length === 0) {
             throw new Error("未添加待编辑的图层");
         }
@@ -99,13 +85,13 @@ export default class EditLayerComponent extends ComponentBase {
 
         let layer = this.childrenComponents[0].mapComponent;
 
-        this._mapComponent = this.getService<base.IEditLayer>(
+        this.mapComponent = this.getService<base.IEditLayer>(
             serviceType,
             layer,
             options
         );
 
-        this.$emit("on-build", this._mapComponent);
+        this.$emit("on-build", this.mapComponent);
 
         if (!options["onEditInfo"]) {
             console.warn("没有定义 onEditInfo 事件");

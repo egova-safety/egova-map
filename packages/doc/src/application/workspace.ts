@@ -1,6 +1,6 @@
 import Vue from "vue";
 
-import flagwind from "flagwind-core";
+import flagwind from "@egova/flagwind-core";
 import IWorkbench = flagwind.IWorkbench;
 import ApplicationContext from "@s/application/context";
 

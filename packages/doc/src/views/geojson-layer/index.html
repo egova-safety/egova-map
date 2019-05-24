@@ -1,0 +1,126 @@
+<div class="v-intro">
+    <h1>画板图层</h1>
+    <h2>一、概述</h2>
+    <p>Geojson Layer 使用html画板技术对地图要素进行展示，它的效率会比较高。但控制粒度会更粗一些，不能对单个要素进行修改操作，除非整体刷新图层</p>
+
+    <h2>二、示例</h2>
+    <u-example title="说明">
+        <template slot="case">
+            <fm-map ref="fwAmap" vid="esri_map">
+                <fm-geojson-layer vid="canvasLayer" :source="dataList" @getImages="onGetImages"
+                    @changeStandardModel="onChangeStandardModel">
+                    <fm-info-window :showWare="true">
+                    </fm-info-window>
+                </fm-geojson-layer>
+            </fm-map>
+        </template>
+        <template slot="desc">
+            <p>热力图层是Map的子组件，须放置在Map组件下面。</p>
+
+        </template>
+        <u-code slot="code" lang="html">{{code.heatmap}}</u-code>
+    </u-example>
+    <i-button @click="onChangeSource">修改数据源</i-button>
+    <div class="api">
+        <h2>API</h2>
+        <h3>属性</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>名称</th>
+                    <th>说明</th>
+                    <th>数据类型</th>
+                    <th>属性类型</th>
+                    <th>默认值</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>vid</td>
+                    <td>对象唯一标识</td>
+                    <td>string</td>
+                    <td>静态属性</td>
+                    <td>必填</td>
+                </tr>
+                <tr>
+                    <td>options</td>
+                    <td>地层参数</td>
+                    <td>any</td>
+                    <td>静态属性</td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>symbol</td>
+                    <td>要素样式</td>
+                    <td>any</td>
+                    <td>静态属性</td>
+                    <td>必填</td>
+                </tr>
+
+                <tr>
+                    <td>showInfoWindow</td>
+                    <td>要素单击时，是否显示信息窗口</td>
+                    <td>boolean</td>
+                    <td>动态属性</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>showTooltip</td>
+                    <td>要素悬停时，是否显示tooltip信息。</td>
+                    <td>boolean</td>
+                    <td>静态属性</td>
+                    <td></td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+        <h3>事件</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>事件名</th>
+                    <th>说明</th>
+                    <th>参数</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>on-build</td>
+                    <td>组件构建完成回调。</td>
+                    <td>(layer:FlagwindBusinessLayer)</td>
+                </tr>
+                <tr>
+                    <td>onLayerClick</td>
+                    <td>图层要素单击事件。</td>
+                    <td>(evt:any)</td>
+                </tr>
+                <tr>
+                    <td>onVisibleChanged</td>
+                    <td>图层可见性变换回调事件。</td>
+                    <td>(isShow: boolean)</td>
+                </tr>
+                <tr>
+                    <td>getImages</td>
+                    <td>自定义要素图标，它的优先级高于symbol，默认为null。</td>
+                    <td>()</td>
+                </tr>
+                <tr>
+                    <td>changeStandardModel</td>
+                    <td>标准化实体转换方法。</td>
+                    <td>(model: any)</td>
+                </tr>
+                <tr>
+                    <td>getInfoWindowContext</td>
+                    <td>信息弹窗方法。返回结果如：{title: "详细信息", content: "没有定制详细信息"}
+                    </td>
+                    <td>(mode: any)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+</div>

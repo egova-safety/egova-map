@@ -18,7 +18,7 @@ const EXCULDE_NAMES = ["vid", "source", "options"];
  * @version 1.0.0
  */
 @component({ template: require("./heatmap-layer.html") })
-export default class HeatmapLayerComponent extends ComponentBase {
+export class HeatmapLayerComponent extends ComponentBase {
 
     /**
      * 获取或设置图层ID。
@@ -51,13 +51,7 @@ export default class HeatmapLayerComponent extends ComponentBase {
     @config({ type: Array })
     public source!: Array<object>;
 
-    public get mapComponent(): base.IHeatmapLayer {
-        return this._mapComponent;
-    }
-
-    public set mapComponent(value: base.IHeatmapLayer) {
-        this._mapComponent = value;
-    }
+    public mapComponent: base.IHeatmapLayer;
 
     public constructor() {
         super(EVENTS);
@@ -129,27 +123,27 @@ export default class HeatmapLayerComponent extends ComponentBase {
 
         let serviceType = this.getMapClassType("HeatmapLayer");
 
-        this._mapComponent = this.getService<base.IHeatmapLayer>(
+        this.mapComponent = this.getService<base.IHeatmapLayer>(
             serviceType,
             this.map,
             this.vid,
             options
         );
 
-        this.$emit("on-build", this._mapComponent);
+        this.$emit("on-build", this.mapComponent);
 
         this.childrenComponents.forEach(vnode => {
-            vnode.$emit("layer-ready", this._mapComponent);
+            vnode.$emit("layer-ready", this.mapComponent);
         });
 
         if (this.source && this.source.length > 0) {
             if (this.map.loaded) {
-                this._mapComponent.clear();
-                this._mapComponent.showDataList(this.source, false);
+                this.mapComponent.clear();
+                this.mapComponent.showDataList(this.source, false);
             } else {
                 this.map.on("onLoad", () => {
-                    this._mapComponent.clear();
-                    this._mapComponent.showDataList(this.source, false);
+                    this.mapComponent.clear();
+                    this.mapComponent.showDataList(this.source, false);
                 });
             }
         }

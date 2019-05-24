@@ -71,7 +71,7 @@ module.exports = {
     configureWebpack: config => {
 
         //console.log(config.resolveLoader.modulesDirectories);
-        // config.entry.vendors= ["vue", "vue-router", "flagwind-core", "@egova/flagwind-web", "iview"];
+        // config.entry.vendors= ["vue", "vue-router", "@egova/flagwind-core", "@egova/flagwind-web", "iview"];
         config.plugins.push(new MonocoEditorPlugin());
         config.node.process=true;
         config.resolve.symlinks= false

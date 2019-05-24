@@ -1,4 +1,4 @@
-import flagwind from "flagwind-core";
+import flagwind from "@egova/flagwind-core";
 import WorkbenchBase = flagwind.WorkbenchBase;
 import ApplicationContextBase = flagwind.ApplicationContextBase;
 import ApplicationContext from "@s/application/context";
@@ -23,7 +23,7 @@ import mapUI from "@egova/map-ui";
 // 倒入全局样式
 import "@egova/map-ui/dist/egova-map-ui.css";
 import "iview/dist/styles/iview.css";
-import "@egova/flagwind-web/dist/styles/flagwind.css";
+import "@egova/flagwind-web/dist/flagwind-web.css";
 import "../assets/styles/index.scss";
 
 /**

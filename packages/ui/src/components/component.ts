@@ -8,8 +8,6 @@ import base from "@egova/map-base";
  * @version 1.0.0
  */
 export default abstract class ComponentBase extends Vue {
-    protected _map!: base.MapView; // 高德地图实例
-    protected _mapComponent: any; // 高德组件实例
 
     /**
      * 获取或设置组件支持的高德事件。
@@ -25,27 +23,9 @@ export default abstract class ComponentBase extends Vue {
      * @property
      * @returns any
      */
-    public get map(): base.MapView {
-        return this._map;
-    }
+    public map: base.MapView;
 
-    public set map(value: base.MapView) {
-        this._map = value;
-    }
-
-    /**
-     * 获取或设置高德组件实例。
-     * @public
-     * @property
-     * @returns any
-     */
-    public get mapComponent(): any {
-        return this._mapComponent;
-    }
-
-    public set mapComponent(value: any) {
-        this._mapComponent = value;
-    }
+    public mapComponent: any;
 
     public get childrenComponents(): Array<ComponentBase> {
         if (this.$slots.default) {
@@ -113,10 +93,6 @@ export default abstract class ComponentBase extends Vue {
     protected resolveOptions(): any {
         const options: any = {};
 
-        // if (this.map) {
-        //     options.map = this.map;
-        // }
-
         const {
             $options: { propsData: props = {} }
         } = this;
@@ -173,23 +149,24 @@ export default abstract class ComponentBase extends Vue {
         // virtual method
     }
 
-    protected getService<T>(serviceType: Function | string,...params: Array<any>) {
+    protected getService<T>(serviceType: Function | string, ...params: Array<any>) {
         return Activator.createInstance<T>(serviceType, ...params);
     }
 
     protected getMapClassType(name: string, mapType: string = this.getMapType()) {
-        let arcgisSDK = require("@egova/map-arcgis");
-        let minemapSDK = require("@egova/map-minemap");
-        if (arcgisSDK.default) {
-            arcgisSDK = arcgisSDK.default;
-        }
-        if (minemapSDK.default) {
-            minemapSDK = minemapSDK.default;
-        }
+
         let serviceType: any;
         if (mapType === "arcgis") {
+            let arcgisSDK = require("@egova/map-arcgis");
+            if (arcgisSDK && arcgisSDK.default) {
+                arcgisSDK = arcgisSDK.default;
+            }
             serviceType = (<any>arcgisSDK)[name];
         } else if (mapType === "minemap") {
+            let minemapSDK = require("@egova/map-minemap");
+            if (minemapSDK && minemapSDK.default) {
+                minemapSDK = minemapSDK.default;
+            }
             serviceType = (<any>minemapSDK)[name];
         } else {
             throw new Error("不支持的地图类型" + mapType);

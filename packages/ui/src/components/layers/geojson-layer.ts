@@ -8,7 +8,18 @@ import ComponentBase from "@/components/component";
  * @private
  * @const
  */
-const EVENTS = ["changeStandardModel"];
+
+const EVENTS = [
+    "changeStandardModel",
+    "getInfoWindowContext",
+    "getImages",
+    "onLayerClick",
+    "onMapLoad",
+    "onCheckChanged",
+    "onPositionChanged",
+    "onVisibleChanged",
+    "onEvent"
+];
 
 const EXCULDE_NAMES = ["vid", "source", "options"];
 
@@ -17,8 +28,8 @@ const EXCULDE_NAMES = ["vid", "source", "options"];
  * @class
  * @version 1.0.0
  */
-@component({ template: require("./canvas-layer.html") })
-export default class CanvasLayerComponent extends ComponentBase {
+@component({ template: require("./geojson-layer.html") })
+export class GeojsonLayerComponent extends ComponentBase {
 
     /**
      * 获取或设置图层ID。
@@ -37,18 +48,22 @@ export default class CanvasLayerComponent extends ComponentBase {
     public type!: "point" | "polyline" | "polygon";
 
     /**
+     * 要素单击时，是否显示信息窗口
+     */
+    @config({ type: Boolean, default: false })
+    public showInfoWindow: boolean;
+
+    /**
+     * 要素悬停时，是否显示tooltip信息
+     */
+    @config({ type: Boolean, default: false })
+    public showTooltip: boolean;
+
+    /**
      * 数据源
      */
     @config({ type: Array })
     public source!: Array<object>;
-
-    public get mapComponent(): base.ICanvasLayer {
-        return this._mapComponent;
-    }
-
-    public set mapComponent(value: base.ICanvasLayer) {
-        this._mapComponent = value;
-    }
 
     public constructor() {
         super(EVENTS);
@@ -68,7 +83,6 @@ export default class CanvasLayerComponent extends ComponentBase {
                 this.mapComponent.clear();
                 this.mapComponent.showDataList(source, false);
             }
-
         }, ({ deep: true }));
 
     }
@@ -118,34 +132,33 @@ export default class CanvasLayerComponent extends ComponentBase {
 
         options = { ...this.options, ...options };
 
-        let serviceType = this.getMapClassType("CanvasLayer");
+        let serviceType = this.getMapClassType("GeojsonLayer");
 
-        this._mapComponent = this.getService<base.ICanvasLayer>(
+        this.mapComponent = this.getService<base.GeojsonLayer>(
             serviceType,
             this.map,
             this.vid,
             options
         );
 
-        this.$emit("on-build", this._mapComponent);
+        this.$emit("on-build", this.mapComponent);
 
         this.childrenComponents.forEach(vnode => {
-            vnode.$emit("layer-ready", this._mapComponent);
+            vnode.$emit("layer-ready", this.mapComponent);
         });
 
         if (this.source && this.source.length > 0) {
-            if (this.source && this.source.length > 0) {
-                if (this.map.loaded) {
-                    this._mapComponent.clear();
-                    this._mapComponent.showDataList(this.source, false);
-                } else {
-                    this.map.on("onLoad", () => {
-                        this._mapComponent.clear();
-                        this._mapComponent.showDataList(this.source, false);
-                    });
-                }
+            if (this.map.loaded) {
+                this.mapComponent.clear();
+                this.mapComponent.showDataList(this.source, false);
+            } else {
+                this.map.on("onLoad", () => {
+                    this.mapComponent.clear();
+                    this.mapComponent.showDataList(this.source, false);
+                });
             }
         }
+
     }
 
 }

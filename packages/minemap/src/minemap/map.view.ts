@@ -111,6 +111,7 @@ export class MapView extends base.MapView {
         this.innerMap = map;
 
         map.on("load", (args: any) => {
+            this.loaded = true;
             this.dispatchEvent("onLoad", args);
         });
 
@@ -209,9 +210,9 @@ export class MapView extends base.MapView {
                 case "html":
                     this.innerMap.infoWindow.setHTML(
                         `<h4 class='info-window-title'>${
-                            evt.context.title
+                        evt.context.title
                         }</h4><div class='info-window-content'>${
-                            evt.context.content
+                        evt.context.content
                         }</div>`
                     );
                     break;
@@ -221,9 +222,9 @@ export class MapView extends base.MapView {
                 default:
                     this.innerMap.infoWindow.setHTML(
                         `<h4 class='info-window-title'>${
-                            evt.context.title
+                        evt.context.title
                         }</h4><div class='info-window-content'>${
-                            evt.context.content
+                        evt.context.content
                         }</div>`
                     );
                     break;

@@ -8,7 +8,7 @@ import { MapLoader } from "./common";
 
 import setting from "./config";
 
-export { default as MapLoader } from "./common/loader";
+export * from "./common/loader";
 
 export { default as setting } from "./config";
 

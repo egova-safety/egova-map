@@ -26,13 +26,7 @@ export default class ContextMenuComponent extends ComponentBase {
     @config({ type: Boolean})
     public enabled!: boolean;
 
-    public get mapComponent(): base.ContextMenu {
-        return this._mapComponent;
-    }
-
-    public set mapComponent(value: base.ContextMenu) {
-        this._mapComponent = value;
-    }
+    public  mapComponent: base.ContextMenu ;
 
     public constructor() {
         super(EVENTS);
@@ -111,9 +105,9 @@ export default class ContextMenuComponent extends ComponentBase {
             contextMenu.disable();
         }
 
-        this._mapComponent = contextMenu;
+        this.mapComponent = contextMenu;
 
-        this.$emit("on-build", this._mapComponent);
+        this.$emit("on-build", this.mapComponent);
 
     }
 

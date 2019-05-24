@@ -10,14 +10,14 @@ import ComponentBase from "@/components/component";
  */
 const EVENTS = ["onCheckChanged"];
 
-const EXCULDE_NAMES = ["command","options"];
+const EXCULDE_NAMES = ["command", "options"];
 
 /**
  * 点图层
  * @class
  * @version 1.0.0
  */
-@component({ template: require("./select-box.html")  })
+@component({ template: require("./select-box.html") })
 export default class SelectBoxComponent extends ComponentBase {
 
     @config({ type: Number, default: 2 })
@@ -26,20 +26,14 @@ export default class SelectBoxComponent extends ComponentBase {
     @config({ type: Object })
     public options: any;
 
-    public get mapComponent(): base.ISelectBox {
-        return this._mapComponent;
-    }
-
-    public set mapComponent(value: base.ISelectBox) {
-        this._mapComponent = value;
-    }
+    public mapComponent: base.ISelectBox;
 
     public constructor() {
         super(EVENTS);
     }
 
     protected active(mode: string) {
-        this._mapComponent.active(mode);
+        this.mapComponent.active(mode);
     }
 
     /**
@@ -91,20 +85,15 @@ export default class SelectBoxComponent extends ComponentBase {
 
         let selecbox = this.getService<base.ISelectBox>(serviceType, this.map, options);
 
-        // this.$children.forEach(child => {
-        //     child.$emit("map-ready", this.map);
-        //     selecbox.addLayer((<any>child).mapComponent);
-        // });
-
         this.childrenComponents.forEach(vnode => {
             vnode.$emit("map-ready", this.map);
             selecbox.addLayer(vnode.mapComponent);
         });
 
-        this._mapComponent = selecbox;
+        this.mapComponent = selecbox;
         selecbox.deleteSelectBar();
 
-        this.$emit("on-build", this._mapComponent);
+        this.$emit("on-build", this.mapComponent);
 
     }
 

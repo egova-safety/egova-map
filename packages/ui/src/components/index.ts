@@ -1,34 +1,36 @@
 // 组件
 import Map from "@/components/map";
 
-import PointLayer from "@/components/layers/point-layer";
-import PolygonLayer from "@/components/layers/polygon-layer";
-import PolylineLayer from "@/components/layers/polyline-layer";
-import EditLayer from "@/components/layers/edit-layer";
-import TrackLayer from "@/components/layers/track-layer";
-import HeatmapLayer from "@/components/layers/heatmap-layer";
-import CanvasLayer from "@/components/layers/canvas-layer";
+import {
+    PointLayerComponent,
+    PolygonLayerComponent,
+    PolylineLayerComponent,
+    EditLayerComponent,
+    TrackLayerComponent,
+    GeojsonLayerComponent,
+    HeatmapLayerComponent
+} from "@/components/layers";
 
 import {
     SelectBoxComponent,
     ContextMenuComponent,
     InfoWindowComponent,
-    Overlay
+    OverlayComponent
 } from "@/components/widgets";
 
 const components: any = {
     "fm-map": Map,
-    "fm-point-layer": PointLayer,
-    "fm-polygon-layer": PolygonLayer,
-    "fm-polyline-layer": PolylineLayer,
-    "fm-edit-layer": EditLayer,
-    "fm-track-layer": TrackLayer,
-    "fm-heatmap-layer": HeatmapLayer,
-    "fm-canvas-layer": CanvasLayer,
+    "fm-point-layer": PointLayerComponent,
+    "fm-polygon-layer": PolygonLayerComponent,
+    "fm-polyline-layer": PolylineLayerComponent,
+    "fm-edit-layer": EditLayerComponent,
+    "fm-track-layer": TrackLayerComponent,
+    "fm-heatmap-layer": HeatmapLayerComponent,
+    "fm-geojson-layer": GeojsonLayerComponent,
     "fm-select-box": SelectBoxComponent,
     "fm-context-menu": ContextMenuComponent,
     "fm-info-window": InfoWindowComponent,
-    "fm-overlay": Overlay
+    "fm-overlay": OverlayComponent
 };
 
 const install = {
@@ -51,31 +53,31 @@ const install = {
 };
 
 export {
-    PointLayer,
-    PolygonLayer,
-    PolylineLayer,
-    EditLayer,
-    TrackLayer,
-    CanvasLayer,
-    HeatmapLayer,
+    PointLayerComponent,
+    PolygonLayerComponent,
+    PolylineLayerComponent,
+    EditLayerComponent,
+    TrackLayerComponent,
+    GeojsonLayerComponent,
+    HeatmapLayerComponent,
     SelectBoxComponent,
     ContextMenuComponent,
     InfoWindowComponent,
-    Overlay,
+    OverlayComponent,
     install
 };
 
 export default {
-    PointLayer,
-    PolygonLayer,
-    PolylineLayer,
-    EditLayer,
-    TrackLayer,
-    CanvasLayer,
-    HeatmapLayer,
+    PointLayerComponent,
+    PolygonLayerComponent,
+    PolylineLayerComponent,
+    EditLayerComponent,
+    TrackLayerComponent,
+    GeojsonLayerComponent,
+    HeatmapLayerComponent,
     SelectBoxComponent,
     ContextMenuComponent,
     InfoWindowComponent,
-    Overlay,
+    OverlayComponent,
     install
 };

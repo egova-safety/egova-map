@@ -21,7 +21,7 @@ module.exports = webpackMerge(webpackBaseConfig, {
         app: [
             './src/main.ts'
         ],
-        vendors: ["vue", "vue-router", "flagwind-core", "@egova/flagwind-web", "iview", "@egova/map-base", "@egova/map-ui"]
+        vendors: ["vue", "vue-router", "@egova/flagwind-core", "@egova/flagwind-web", "iview", "@egova/map-base", "@egova/map-ui"]
     },
     resolve: {
         alias: {

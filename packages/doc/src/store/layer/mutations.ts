@@ -7,7 +7,7 @@
  */
 
 import { MutationTree } from "vuex";
-import flagwind from "flagwind-core";
+import flagwind from "@egova/flagwind-core";
 import ArgumentException = flagwind.ArgumentException;
 import * as models from "@s/models";
 import State from "./state";

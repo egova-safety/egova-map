@@ -35,7 +35,7 @@ const EXCULDE_NAMES = [
  * @version 1.0.0
  */
 @component({ template: require("./point-layer.html") })
-export default class PointLayerComponent extends ComponentBase {
+export class PointLayerComponent extends ComponentBase {
     /**
      * 获取或设置图层ID。
      * @description 静态属性，仅支持初始化配置。
@@ -212,17 +212,17 @@ export default class PointLayerComponent extends ComponentBase {
             serviceType = this.getMapClassType("ClusterLayer");
         }
 
-        this._mapComponent = this.getService<base.BusinessLayer>(
+        this.mapComponent = this.getService<base.BusinessLayer>(
             serviceType,
             this.map,
             this.vid,
             options
         );
 
-        this.$emit("on-build", this._mapComponent);
+        this.$emit("on-build", this.mapComponent);
 
         this.childrenComponents.forEach(vnode => {
-            vnode.$emit("map-ready", this._mapComponent);
+            vnode.$emit("layer-ready", this.mapComponent);
         });
 
         if (options["showInfoWindow"] && !options["getInfoWindowContext"]) {
@@ -230,8 +230,8 @@ export default class PointLayerComponent extends ComponentBase {
         }
 
         if (this.source && this.source.length > 0) {
-            this._mapComponent.clear();
-            this._mapComponent.saveGraphicList(this.source);
+            this.mapComponent.clear();
+            this.mapComponent.saveGraphicList(this.source);
         }
 
         if (this.requestData && !options["getDataList"]) {
@@ -243,11 +243,11 @@ export default class PointLayerComponent extends ComponentBase {
         }
 
         if (this.requestData && options["getDataList"]) {
-            this._mapComponent.showDataList();
+            this.mapComponent.showDataList();
         }
 
         if (this.requestStatus && options["getLastStatus"]) {
-            this._mapComponent.start();
+            this.mapComponent.start();
         }
     }
 }

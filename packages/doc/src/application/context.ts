@@ -1,6 +1,6 @@
 import Router from "vue-router";
 import { Store } from "vuex";
-import flagwind from "flagwind-core";
+import flagwind from "@egova/flagwind-core";
 import Workbench from "@s/application/workbench";
 import IWorkbench = flagwind.IWorkbench;
 import ApplicationContextBase = flagwind.ApplicationContextBase;

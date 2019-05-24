@@ -1,1 +1,1 @@
-export { default as MapLoader } from "./loader";
+export * from "./loader";

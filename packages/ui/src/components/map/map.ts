@@ -188,7 +188,7 @@ export default class MapComponent extends ComponentBase {
             this.vid,
             options
         );
-        this.$emit("on-build", this._mapComponent);
+        this.$emit("on-build", this.mapComponent);
         // 通知外部组件地图已准备就绪
         this.$emit("map-ready", this.map);
         // 通知所有子组件地图已准备就绪

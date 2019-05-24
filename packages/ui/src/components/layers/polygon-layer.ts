@@ -33,7 +33,7 @@ const EXCULDE_NAMES = [
  * @version 1.0.0
  */
 @component({ template: require("./polygon-layer.html") })
-export default class PolygonLayerComponent extends ComponentBase {
+export class PolygonLayerComponent extends ComponentBase {
     /**
      * 获取或设置图层ID。
      * @description 静态属性，仅支持初始化配置。
@@ -86,13 +86,7 @@ export default class PolygonLayerComponent extends ComponentBase {
     @config({ type: Array })
     public source!: Array<object>;
 
-    public get mapComponent(): base.BusinessLayer {
-        return this._mapComponent;
-    }
-
-    public set mapComponent(value: base.BusinessLayer) {
-        this._mapComponent = value;
-    }
+    public mapComponent: base.BusinessLayer;
 
     public constructor() {
         super(EVENTS);
@@ -195,17 +189,17 @@ export default class PolygonLayerComponent extends ComponentBase {
 
         let serviceType = this.getMapClassType("PolygonLayer");
 
-        this._mapComponent = this.getService<base.BusinessLayer>(
+        this.mapComponent = this.getService<base.BusinessLayer>(
             serviceType,
             this.map,
             this.vid,
             options
         );
 
-        this.$emit("on-build", this._mapComponent);
+        this.$emit("on-build", this.mapComponent);
 
         this.childrenComponents.forEach(vnode => {
-            vnode.$emit("layer-ready", this._mapComponent);
+            vnode.$emit("layer-ready", this.mapComponent);
         });
 
         if (options["showInfoWindow"] && !options["getInfoWindowContext"]) {
@@ -213,8 +207,8 @@ export default class PolygonLayerComponent extends ComponentBase {
         }
 
         if (this.source && this.source.length > 0) {
-            this._mapComponent.clear();
-            this._mapComponent.saveGraphicList(this.source);
+            this.mapComponent.clear();
+            this.mapComponent.saveGraphicList(this.source);
         }
 
         if (this.requestData && !options["getDataList"]) {
@@ -226,11 +220,11 @@ export default class PolygonLayerComponent extends ComponentBase {
         }
 
         if (this.requestData && options["getDataList"]) {
-            this._mapComponent.showDataList();
+            this.mapComponent.showDataList();
         }
 
         if (this.requestStatus && options["getLastStatus"]) {
-            this._mapComponent.start();
+            this.mapComponent.start();
         }
     }
 }

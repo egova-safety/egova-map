@@ -7,7 +7,7 @@
  */
 
 import * as models from "@s/models";
-import flagwind from "flagwind-core";
+import flagwind from "@egova/flagwind-core";
 import Type = flagwind.Type;
 
 export default class State {

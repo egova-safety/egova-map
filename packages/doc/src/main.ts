@@ -1,4 +1,4 @@
-import flagwind from "flagwind-core";
+import flagwind from "@egova/flagwind-core";
 import ApplicationContext from "./application/context";
 import mapUI from "@egova/map-ui";
 

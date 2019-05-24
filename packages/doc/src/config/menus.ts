@@ -68,9 +68,9 @@ const menus = [
                         icon: "pie-graph"
                     },
                     {
-                        name: "canvasLayer",
+                        name: "geojsonLayer",
                         title: "画板图层",
-                        path: "/canvas-layer",
+                        path: "/geojson-layer",
                         visible: true,
                         icon: "pie-graph"
                     },

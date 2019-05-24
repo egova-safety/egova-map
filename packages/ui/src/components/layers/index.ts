@@ -1,7 +1,7 @@
-export { default as PointLayerComponent } from "./point-layer";
-export { default as PolygonLayerComponent } from "./polygon-layer";
-export { default as PolylineLayerComponent } from "./polyline-layer";
-export { default as EditLayerComponent } from "./edit-layer";
-export { default as TrackLayerComponent } from "./track-layer";
-export { default as HeatmapLayerComponent } from "./heatmap-layer";
-export { default as CanvasLayerComponent } from "./canvas-layer";
+export * from "./point-layer";
+export * from "./polygon-layer";
+export * from "./polyline-layer";
+export * from "./edit-layer";
+export * from "./track-layer";
+export * from "./heatmap-layer";
+export * from "./geojson-layer";

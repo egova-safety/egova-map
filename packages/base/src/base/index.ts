@@ -16,4 +16,4 @@ export * from "./select.box";
 export * from "./single.layer";
 export * from "./tiled.layer";
 export * from "./track.layer";
-export * from "./canvas.layer";
+export * from "./geojson.layer";

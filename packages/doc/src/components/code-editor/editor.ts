@@ -11,7 +11,6 @@ import MonacoEditor from "vue-monaco";
 import "./editor.less";
 import opts from "./options";
 
-
 /**
  * 表示一个呈现代码块的组件。
  * @class
