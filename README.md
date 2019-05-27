@@ -1,4 +1,4 @@
-# flagwind-map-lib
+# egova-map
 
 该项目是把 flagwind-map 与 vue-flagwind-map 进行了拆分再整合，使用 lerna 进行多包管理，便于日后对相关内容调整时，关联相工作能够一便调整与发布。
 
