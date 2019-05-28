@@ -34,7 +34,5 @@
     "typescript": "^3.3.3"
   },
   "gitHead": "807096ac7aa8f77a21ccfb1346fccae590c63687",
-  "dependencies": {
-
-  }
+  "dependencies": {}
 }

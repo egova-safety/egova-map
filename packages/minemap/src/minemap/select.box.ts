@@ -16,9 +16,7 @@ export const SELECT_BOX_OPTIONS: any = {
         // console.log("onCheckChanged");
     }
 };
-/**
- * 线
- */
+
 export class SelectBox extends base.EventProvider implements base.ISelectBox {
     private edit: any;
 

@@ -7,7 +7,7 @@ import { IGraphicsLayer } from "./graphics.layer";
 export abstract class Geometry {
     public attributes: any;
 
-    public constructor(public type: string, public spatial: MapSpatial) {}
+    public constructor(public type: string, public spatial: MapSpatial) { }
 
     public abstract toJson(): any;
 }
@@ -211,7 +211,7 @@ export class Point extends Geometry {
 export class MapSpatial {
     public static EMPATY: MapSpatial = new MapSpatial(0);
 
-    public constructor(public wkid: number) {}
+    public constructor(public wkid: number) { }
 }
 
 export interface IGraphic extends base.Graphic {
@@ -532,19 +532,17 @@ export class PointGraphic extends base.EventProvider implements IGraphic {
                     imageUrl: this.symbol.imageUrl,
                     imageSize: this.symbol.imageSize
                 });
-                this.marker = new minemap.Marker(this.icon.element, {
-                    offset: this.symbol.imageOffset
-                });
+                this.marker = new minemap.Marker(this.icon.element, { offset: this.symbol.imageOffset });
             }
         }
 
         this.element = this.marker.getElement();
+        if (this.symbol.imageSize && this.symbol.imageSize.length == 2) {
+            this.element.style.height = this.symbol.imageSize[0] + "px";
+            this.element.style.width = this.symbol.imageSize[1] + "px";
+        }
         if (options.point) {
-            this.geometry = new Point(
-                options.point.x,
-                options.point.y,
-                options.point.spatial
-            );
+            this.geometry = new Point(options.point.x, options.point.y, options.point.spatial);
         }
         if (options.geometry) {
             this.geometry = options.geometry;
@@ -557,6 +555,7 @@ export class PointGraphic extends base.EventProvider implements IGraphic {
             this.addClass(options.symbol.className);
             this.symbol.className = "";
         }
+
     }
 
     public addClass(className: string) {
@@ -595,8 +594,8 @@ export class PointGraphic extends base.EventProvider implements IGraphic {
     public clone(id: string) {
         let m = new PointGraphic({
             id: id,
-            symbol: this.symbol,
-            attributes: this.attributes,
+            symbol: { ...this.symbol },
+            attributes: { ...this.attributes },
             point: this.geometry
         });
         return m;
@@ -705,6 +704,10 @@ export class PointGraphic extends base.EventProvider implements IGraphic {
         // }
         if (symbol.imageUrl) {
             this.icon.setImageUrl(symbol.imageUrl);
+        }
+        if (symbol.imageSize && symbol.imageSize.length == 2) {
+            this.element.style.height = symbol.imageSize[0] + "px";
+            this.element.style.width = symbol.imageSize[1] + "px";
         }
         if (symbol.title) {
             this.marker.setTitle(symbol.title);

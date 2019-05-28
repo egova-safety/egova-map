@@ -17,8 +17,7 @@ export class EditLayer extends base.FeatureLayer
         this.options = { ...base.EDIT_LAYER_OPTIONS, ...options };
         this.layer = this.onCreateGraphicsLayer({ id: this.id });
         this.businessLayer = businessLayer;
-        const funGetInfoWindowContext = this.businessLayer.options
-            .getInfoWindowContext;
+        const funGetInfoWindowContext = this.businessLayer.options.getInfoWindowContext;
         this.businessLayer.options.getInfoWindowContext = (model: any) => {
             let context = funGetInfoWindowContext(model);
             context.content +=
