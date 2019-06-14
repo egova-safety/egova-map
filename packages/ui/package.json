@@ -24,7 +24,10 @@
     "license": "MIT",
     "peerDependencies": {
         "@egova/map-base": "*",
-        "esri-loader": ">=2.4.0"
+        "esri-loader": ">=2.4.0",
+        "vue": ">=2.6.10",
+        "vue-class-component": ">=7.1.0",
+        "vue-property-decorator": ">=8.1.1"
     },
     "optionalDependencies": {
         "@egova/map-arcgis": "^1.0.14",
