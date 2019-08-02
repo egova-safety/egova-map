@@ -1,6 +1,6 @@
 {
     "name": "@egova/map-ui",
-    "version": "1.0.14",
+    "version": "1.0.15",
     "types": "dist/types/index.d.ts",
     "main": "dist/egova-map-ui.umd.js",
     "publishConfig": {
@@ -24,14 +24,17 @@
     "license": "MIT",
     "peerDependencies": {
         "@egova/map-base": "*",
-        "esri-loader": ">=2.4.0"
+        "esri-loader": ">=2.4.0",
+        "vue": ">=2.6.10",
+        "vue-class-component": ">=7.1.0",
+        "vue-property-decorator": ">=8.1.1"
     },
     "optionalDependencies": {
-        "@egova/map-arcgis": "^1.0.14",
-        "@egova/map-minemap": "^1.0.14"
+        "@egova/map-arcgis": "^1.0.15",
+        "@egova/map-minemap": "^1.0.15"
     },
     "devDependencies": {
-        "@egova/map-base": "^1.0.14",
+        "@egova/map-base": "^1.0.15",
         "@types/clipboard": "^2.0.1",
         "@types/highlight.js": "^9.12.3",
         "@types/js-cookie": "^2.2.1",

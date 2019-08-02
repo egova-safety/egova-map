@@ -64,8 +64,10 @@ module.exports = {
 
         //config.entry.vendors= ["vue", "esri-loader", "@egova/map-base", "@egova/map-arcgis", "@egova/map-minemap"];
 
-        config.externals= {
-            "vue":"vue",
+        config.externals = {
+            "vue": "vue",
+            "vue-class-component": "vue-class-component",
+            "vue-property-decorator": "vue-property-decorator",
             "esri-loader": "esri-loader",
             "@egova/map-base": "@egova/map-base",
             "@egova/map-arcgis": "@egova/map-arcgis",
