@@ -63,7 +63,6 @@ export default abstract class ComponentBase extends Vue {
     protected mounted(): void {
         const parentComponent = this.$parent as any;
 
-        console.log(base);
         this.map = this.map || parentComponent.map;
 
         if (this.map) {

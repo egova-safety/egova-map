@@ -28,7 +28,10 @@ export class MapView extends base.MapView {
 
     public onCenterAt(point: any): Promise<void> {
         return new Promise(resolve => {
+            console.info("map center at point:")
+            console.info(point);
             this.map.centerAt(point).then(function() {
+                console.info("map center at point success")
                 resolve();
             });
         });
@@ -49,6 +52,7 @@ export class MapView extends base.MapView {
 
         let setting = this.mapSetting;
         let mapArguments = <any>{
+            spatialReference: this.spatial,
             wkid: setting.wkid,
             center: setting.center,
             logo: setting.logo,
@@ -70,24 +74,16 @@ export class MapView extends base.MapView {
         }
 
         if (setting.extent && setting.extent.length === 4) {
-            let minXY = this.getPoint({
-                x: setting.extent[0],
-                y: setting.extent[1]
-            });
-            let maxXY = this.getPoint({
-                x: setting.extent[2],
-                y: setting.extent[3]
-            });
-            let tileExtent = new esri.geometry.Extent(
-                minXY.x,
-                minXY.y,
-                maxXY.x,
-                maxXY.y,
-                this.spatial
-            );
+            let minXY = this.getPoint({ x: setting.extent[0], y: setting.extent[1] });
+            let maxXY = this.getPoint({ x: setting.extent[2], y: setting.extent[3] });
+            let tileExtent = new esri.geometry.Extent(minXY.x,minXY.y,maxXY.x,maxXY.y,this.spatial);
             mapArguments.extent = tileExtent;
         }
 
+        console.info("arcgis map参数:");
+        console.info(mapArguments);
+        console.info("flagwin map参数:");
+        console.info(this.mapSetting);
         // 地图对象
         const map = new esri.Map(this.mapElement, mapArguments);
         map.infoWindow.anchor = "top";
@@ -100,6 +96,7 @@ export class MapView extends base.MapView {
         // #region click event
 
         map.on("load", (args: any) => {
+            console.info("arcgis load success");
             this.dispatchEvent("onLoad", args);
         });
 
@@ -223,7 +220,9 @@ export class MapView extends base.MapView {
                 this.spatial,
                 "瓦片图层"
             );
-            baseLayers.push(layer);
+            if(layer){
+                baseLayers.push(layer);
+            }
         }
 
         if (this.mapSetting.tiledUrls) {
@@ -243,6 +242,9 @@ export class MapView extends base.MapView {
         this.baseLayers.forEach(g => {
             g.appendTo(this.innerMap);
         });
+
+        console.info("arcgis load base layers");
+        console.info(this.baseLayers);
 
         return baseLayers;
     }

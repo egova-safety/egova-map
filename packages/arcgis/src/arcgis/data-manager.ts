@@ -46,9 +46,7 @@ export class DataManager {
                     ymax: gsymax
                 });
                 ext.setSpatialReference(
-                    new esri.SpatialReference({
-                        wkid: 4326
-                    })
+                    map || new esri.SpatialReference({ wkid: 4326 })
                 );
                 clusters.push({
                     extent: ext,

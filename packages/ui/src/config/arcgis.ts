@@ -11,7 +11,7 @@ const setting: base.IMapSetting = <any>{
     tiledUrls: [],
     baseUrl: "",
     extent: null,
-    basemap: "dark-gray-vector",
+    basemap: "",
     units: null,
     minZoom: undefined,
     maxZoom: undefined,

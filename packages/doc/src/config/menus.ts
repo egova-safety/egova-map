@@ -27,13 +27,6 @@ const menus = [
                         path: "/map",
                         visible: true,
                         icon: "md-globe"
-                    },
-                    {
-                        name: "test",
-                        title: "测试",
-                        path: "/test",
-                        visible: true,
-                        icon: "md-globe"
                     }
                 ]
             },

@@ -80,13 +80,13 @@ export class GeojsonLayer extends base.GeojsonLayer {
 
     public show(): void {
         this.isShow = true;
-        this.mapView.innerMap.setLayoutProperty(this.id, 'visibility', true);
+        this.mapView.innerMap.setLayoutProperty(this.id, 'visibility', "visible");
         this.options.onVisibleChanged(this.isShow);
     }
 
     public hide(): void {
         this.isShow = false;
-        this.mapView.innerMap.setLayoutProperty(this.id, 'visibility', false);
+        this.mapView.innerMap.setLayoutProperty(this.id, 'visibility', "none");
         this.options.onVisibleChanged(this.isShow);
     }
 
