@@ -46,7 +46,7 @@
         "less": "^3.9.0",
         "less-loader": "^4.1.0",
         "monaco-editor-webpack-plugin": "^1.7.0",
-        "node-sass": "^4.11.0",
+        "node-sass": "^7.0.0",
         "preload-webpack-plugin": "^2.3.0",
         "raw-loader": "^1.0.0",
         "sass": "^1.17.0",
